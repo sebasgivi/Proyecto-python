@@ -1,0 +1,16 @@
+CAMBIOS CON RESPECTO A LA VERSION DE JAVA:
+
+por hacer:
+ -el tema de la resolucion no me estaba dando debido a la forma que tiene python para importar, por lo tanto a fin de acelerar
+coloque directamente los numeros, por lo tanto falta ver como podemos cuadrar ese pequeño detalle.
+
+Clase Juego:
+ -refrescar:
+   -en la version de java, me di ceunta que haciamos que cada vez que algo se moviera, calculabamos si habia una colision,
+    pero esto estaba mal, todo se mueve en un todo(suena a drogas), es mejor hacer que todos los objetos se muevan a la vez 1 vez
+    y luego calcular
+
+Clase AtributosBasicos:
+  -Sacar radios: en la programacion, hay problemas con los numeros flotantes, 15/3 a veces me puede dar 5 y otras 4.999999999999,
+    eso ocasionaba que a veces las cosas se atravezaran debido a que esto esos 2 numeros son diferentes, por lo tanto decidi usar otra forma
+    que consiste en posy_aux * resX + posx_aux, y limitandos las margenes con un if.
