@@ -1,47 +1,22 @@
 import sys
 from Juego import Juego
+from Mensajes import Mensajes
 
 class Main():
 	
 	if __name__ == "__main__":
+		Juego.idioma()
 		juego = Juego()
-		while(1==1):
-			print(
-				  "|---------------------------------------------------------------------------------|\n"
-				+ "|                                                                                 |\n"
-				+ "|         *     *  *****  *****  *****  ***   ****   ***  *****  ***    ***       |\n"
-				+ "|         **   **  *        *    *     *   *  *   *   *     *   *    * *   *      |\n"
-				+ "|         *  *  *  *        *    *     *   *  *   *   *     *   *    * *          |\n"
-				+ "|         *  *  *  ****     *    ****  *   *  ****    *     *   *    *  ***       |\n"
-				+ "|         *     *  *        *    *     *   *  * *     *     *   *    *     *      |\n"
-				+ "|         *     *  *        *    *     *   *  *  *    *     *   *    * *   *      |\n"
-				+ "|         *     *  *****    *    *****  ***   *   *  ***    *    ***    ***       |\n"
-				+ "|                                                                                 |\n"
-				+ "|                                      *   *   ***                                |\n"
-				+ "|                                      *   *  *                                   |\n"
-				+ "|-------------------------------------  * *    **  -------------------------------|\n"
-				+ "|                                       * *       *                               |\n"
-				+ "|                                        *     ***                                |\n"
-				+ "|                                                                                 |\n"
-				+ "|                               *   *   ***   *    * *****                        |\n"
-				+ "|                               *   *  *   *  *    * *                            |\n"
-				+ "|                               **  *  *   *  *    * *                            |\n"
-				+ "|                               * * *  *   *   *  *  ****                         |\n"
-				+ "|                               *  **  *****   *  *  *                            |\n"
-				+ "|                               *   *  *   *   *  *  *                            |\n"
-				+ "|                               *   *  *   *    *    *****                        |\n"
-				+ "|---------------------------------------------------------------------------------|\n"
-				+ "\n1)Jugar\n"
-				+ "2)Instrucciones\n"
-				+ "3)Puntajes\n"
-				+ "4)Salir\n")
-			opcion=input()
-			if(opcion=="1"):
+		while(1 == 1):
+			print(Mensajes.mensajes.get("menu"))
+			opcion=input(Mensajes.mensajes.get("opcion"))
+			if(opcion == "1"):
 				juego.jugar()
-			elif(opcion=="2"):
-				print("INSTRUCCIONES")
-			elif(opcion=="3"):
-				print("TOP PUNTAJES")
-			elif(opcion=="4"):
-				sys.exit()
+			elif(opcion == "2"):
+				print(Mensajes.mensajes.get("instrucciones"))
+			elif(opcion == "3"):
+				print(Mensajes.mensajes.get("top puntajes"))
+			elif(opcion == "4"):
+				SystemExit()
+			juego = 0
 			juego = Juego()

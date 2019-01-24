@@ -12,44 +12,44 @@ class Tienda:
 			  "5) Daño del disparo\n" + 
 			  "6) Salir\n" + 
 			  "Tu Score es: " , Oleada.score)
-		opcion = input()
-		opcion = int(opcion)
-		while (opcion != 6) :
-			if (opcion == 1) :
+		opcion =input()
+		while (True):
+			if (opcion == "1"):
 				costo = 100
-				print("costo: " , costo)
-				if ( Oleada.score >= costo ) :
+				print("costo: ", costo)
+				if(Oleada.score >= costo ):
 					Oleada.score = Oleada.score - costo
 					personaje.setVida(personaje.getVida() + 1)
-					print("Compra Efectuada, nuevo score: ",Oleada.score)
-			elif (opcion == 2) :
+					print("Compra Efectuada, nuevo score: ", Oleada.score)
+			elif (opcion == "2"):
 				costo = 150
 				print("costo: " , costo)
-				if ( Oleada.score >= costo ) :
+				if (Oleada.score >= costo):
 					Oleada.score = Oleada.score - costo
 					personaje.setNumDisparos(personaje.getNumDisparos() + 1)
-					print("Compra Efectuada, nuevo score: ",Oleada.score)
-			elif (opcion == 3) :
+					print("Compra Efectuada, nuevo score: ", Oleada.score)
+			elif (opcion == "3"):
 				costo = 100
-				print("costo: " , costo)
-				if ( Oleada.score >= costo ) :
+				print("costo: ", costo)
+				if (Oleada.score >= costo):
 					Oleada.score = Oleada.score - costo
 					personaje.setVidaUtilDisparo(personaje.getVidaUtilDisparo() + 1)
-					print("Compra Efectuada, nuevo score: ",Oleada.score)
-			elif (opcion == 4) :
-				costo = (personaje.getVel()) * 50
+					print("Compra Efectuada, nuevo score: ", Oleada.score)
+			elif (opcion == "4"):
+				costo = (personaje.getVelocidad()) * 50
 				print("costo: ", costo)
-				if ( Oleada.score >= costo ) :
+				if (Oleada.score >= costo):
 					Oleada.score = Oleada.score - costo
-					personaje.setVel(personaje.getVel() + 1)
-					print("Compra Efectuada, nuevo score: ",Oleada.score)
-			elif (opcion == 5) :
+					personaje.setVel(personaje.getVelocidad() + 1)
+					print("Compra Efectuada, nuevo score: ", Oleada.score)
+			elif (opcion == "5"):
 				costo = Disparo.getDamage() * 50
-				print("costo: " , costo)
-				if ( Oleada.score >= costo ) :
+				print("costo: ", costo)
+				if (Oleada.score >= costo):
 					Oleada.score = Oleada.score - costo
 					personaje.setDamage(personaje.getDamage() + 1)
-					print("Compra Efectuada, nuevo score: ",Oleada.score)
+					print("Compra Efectuada, nuevo score: ", Oleada.score)
+			elif (opcion == "6"):
+				break;
 			opcion = input()
-			opcion = int(opcion)
 		return personaje

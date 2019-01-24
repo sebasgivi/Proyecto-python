@@ -1,105 +1,110 @@
 import math
+from Resolution import Resolution
 class AtributosBasicos:
 	_direcciones = [0, 90, 180, 270]
-	def __init__ (self,PosicionX,PosicionY,vida,radio,vel,direc,imagen,damage):
-		self.posicionX = PosicionX
-		self.posicionY = PosicionY
-		self.vida = vida
-		self.radio = radio
-		self.vel = vel
-		self.direc = direc
-		self.imagen = imagen
-		self.damage = damage
-		self.arreglo_radios = self.sacarRadios(self.radio)
+	def __init__ (self, posicion_x, posicion_y, vida, medida_hitbox,
+                  velocidad,direccion,imagen,damage):
+		self._posicion_x = posicion_x
+		self._posicion_y = posicion_y
+		self._vida = vida
+		self._medida_hitbox = medida_hitbox
+		self._velocidad = velocidad
+		self._direccion = direccion
+		self._imagen = imagen
+		self._damage = damage
+		self._area_hitbox = self.calcularHitBox()
 
 	def getDamage(self):
-		return self.damage
+		return self._damage
 
 	def setDamage(self,damage): 
-		self.damage = damage
+		self._damage = damage
+
+	def getPosicionY(self):
+		return int(self._posicion_y)
+
+	def setPosicionY(self,posicion):
+		if (posicion < 0):
+			self._posicion_y = Resolution.resy   #CAMBIAR POR INTERFAZ.
+		elif (posicion > Resolution.resy):
+			self._posicion_y = 0
+		else:
+		    self._posicion_y = posicion
+
+	def getPosicionX(self):
+		return int(self._posicion_x)
+
+	def setPosicionX(self,posicion):       #CAMBIAR POR INTERFAZ.
+		if (posicion < 0):
+		   self._posicion_x = Resolution.resx
+		elif (posicion > Resolution.resx):
+			self._posicion_x = 0
+		else:
+			self._posicion_x = posicion
+
+	def getVelocidad (self):
+		return self._velocidad
+
+	def setVelocidad (self,velocidad):
+		self._velocidad = velocidad
+
+	def getDireccion (self):
+		return self._direccion
+
+	def getImagen (self):
+		return self._imagen
+
+	def setVida (self,vida):
+		self._vida = vida
+
+	def getVida (self):
+		return self._vida
+
+	def setMedidaHitBox (self, medida_hitbox):
+		self._medida_hitbox = medida_hitbox
+
+	def getMedidaHitBox (self):
+		return self._medida_hitbox
+
+	def getHitBox(self):
+	  return self._area_hitbox
 
 	def avanzar(self):
-		dir_aux = self.getDirec()
-		if(dir_aux == 0):
+		dir_actual = self.getDireccion()
+		if(dir_actual == 0):
 			self.setPosicionX(self.getPosicionX() + 1)
-		elif(dir_aux == 90):
+		elif(dir_actual == 90):
 			self.setPosicionY(self.getPosicionY() - 1)
-		elif(dir_aux == 180):
+		elif(dir_actual == 180):
 			self.setPosicionX(self.getPosicionX() - 1)
 		else:
 			self.setPosicionY(self.getPosicionY() + 1)
 
-		self.arreglo_radios = self.sacarRadios(self.radio)
+		self._area_hitbox = self.calcularHitBox()
 
-	def getPosicionY(self):
-		return self.posicionY
-
-	def setPosicionY(self,posicion):
-		if (posicion < 0):
-			self.posicionY = 30
-		elif (posicion > 30):
-			self.posicionY = 0
-		else:
-		    self.posicionY = posicion
-
-	def getPosicionX(self):
-		return self.posicionX
-
-	def setPosicionX(self,posicion): 
-		if (posicion < 0):
-		   self.posicionX = 120
-		elif (posicion > 120):
-			self.posicionX = 0
-		else:
-			self.posicionX = posicion
-
-	def getVel (self):
-		return self.vel
-
-	def setVel (self,velocidad):
-		self.vel = velocidad
-
-	def getDirec (self):
-		return self.direc
-
-	def getImagen (self):
-		return self.imagen
-
-	def sacarRadios (self,radio):
-		arreglo_radios = []
-		posx_aux = self.getPosicionX() - radio
-		posy_aux = self.getPosicionY() - radio
-		for i in range(2 * self.radio):
-			if(posx_aux < 120 and posy_aux < 30 and posx_aux > 0 and posy_aux > 0):
-				arreglo_radios.append(posy_aux * 120 + posx_aux)
+	def calcularHitBox (self):
+		hit_box = []
+		posx_aux = self.getPosicionX() - self._medida_hitbox
+		posy_aux = self.getPosicionY() - self._medida_hitbox
+		for i in range(2 * self._medida_hitbox):
+			if(posx_aux < Resolution.resx and posy_aux < Resolution.resy and posx_aux > 0
+               and posy_aux > 0):
+				hit_box.append(posy_aux*Resolution.resx + posx_aux)
 			posx_aux+=1
-		for i in range(2 * self.radio):
-			if(posx_aux < 120 and posy_aux < 30 and posx_aux > 0 and posy_aux > 0):
-				arreglo_radios.append(posy_aux * 120 + posx_aux)
+		for i in range(2 * self._medida_hitbox):
+			if(posx_aux < Resolution.resx and posy_aux < Resolution.resy and posx_aux > 0
+               and posy_aux > 0):
+				hit_box.append(posy_aux*Resolution.resx + posx_aux)
 			posy_aux +=1
-		for i in range(2 * self.radio):
-			if(posx_aux < 120 and posy_aux < 30 and posx_aux > 0 and posy_aux > 0):
-				arreglo_radios.append(posy_aux * 120 + posx_aux)
+		for i in range(2 * self._medida_hitbox):
+			if(posx_aux < Resolution.resx and posy_aux < Resolution.resy and posx_aux > 0
+               and posy_aux > 0):
+				hit_box.append(posy_aux*Resolution.resx + posx_aux)
 			posx_aux -=1
-		for i in range(2 * self.radio):
-			if(posx_aux < 120 and posy_aux < 30 and posx_aux > 0 and posy_aux > 0):
-				arreglo_radios.append(posy_aux * 120 + posx_aux)
+		for i in range(2 * self._medida_hitbox):
+			if(posx_aux < Resolution.resx and posy_aux < Resolution.resy and posx_aux > 0
+               and posy_aux > 0):
+				hit_box.append(posy_aux*Resolution.resx + posx_aux)
 			posy_aux -=1
 
-		return arreglo_radios
-
-
-	def setVida (self,vida):
-		self.vida = vida
-
-	def getVida (self):
-		return self.vida
-
-	def setRadio (self,radio):
-		self.radio = radio
-
-	def getRadio (self):
-		return self.radio
-
-	def getArregloRadios(self):
-	  return self.arreglo_radios
+		return hit_box

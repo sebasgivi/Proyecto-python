@@ -2,28 +2,27 @@ from AtributosBasicos import AtributosBasicos
 
 class Disparo(AtributosBasicos):
 
-	def __init__(self,posicionx,posiciony,direc,vida_util_disparo,damage):
-		super(Disparo, self).__init__(posicionx + self.dirDisparo(direc)[0],posiciony + self.dirDisparo(direc)[1],1,1,2,direc,"*",damage)
-		self.vida_util_disparo=vida_util_disparo
+	def __init__(self,posicionx,posiciony,direccion,vida_util_disparo,damage):
+		super(Disparo, self).__init__(posicionx + self.direccionDisparo(direccion)[0], 
+                                      posiciony + self.direccionDisparo(direccion)[1],
+                                      1, 1, 2, direccion, "*", damage)
+		self._vida_util_disparo=vida_util_disparo
 	
 	def getVidaUtilDisparo(self):
-		return self.vida_util_disparo
+		return self._vida_util_disparo
 
 	def setVidaUtilDisparo(self,vida_util_disparo): 
-		self.vida_util_disparo = vida_util_disparo
+		self._vida_util_disparo = vida_util_disparo
 
-	def getArregloRadios(self):
-		return self.arreglo_radios
-
-	def dirDisparo(self,direc):
+	def direccionDisparo(self,direccion):
 		arreglo = []
-		if(direc==0):
+		if(direccion == 0):
 			arreglo.append(1)
 			arreglo.append(0)
-		elif(direc==90):
+		elif(direccion == 90):
 			arreglo.append(0)
 			arreglo.append(-1)
-		elif(direc==180):
+		elif(direccion == 180):
 			arreglo.append(-1)
 			arreglo.append(0)
 		else:

@@ -1,25 +1,28 @@
 from AtributosBasicos import AtributosBasicos
 from Disparo import Disparo
+from Resolution import Resolution
+
 class Nave(AtributosBasicos):
 	"""docstring for Nave"""
 	disparos = []
-	def __init__(self, imagenes = [">","^","<","v"], numDisparos = 3, vidaUtilDisparo = 10):
-		super(Nave, self).__init__(60,15,3,1,5,90,"^",1)
-		self.numDisparos = numDisparos
-		self.imagenes = imagenes
-		self.vidaUtilDisparo = vidaUtilDisparo
+	def __init__(self, imagenes = [">","^","<","v"], numero_disparos = 3,
+                 vida_util_disparo = 10):
+		super(Nave, self).__init__(Resolution.resx/2, Resolution.resy/2, 3, 1, 5, 90, "^", 1)
+		self._numero_disparos = numero_disparos
+		self._imagenes = imagenes
+		self._vida_util_disparo = vida_util_disparo
 
 	def getVidaUtilDisparo(self):
-		return self.vidaUtilDisparo
+		return self._vida_util_disparo
 
-	def setVidaUtilDisparo(self,vidaUtilDisparo): 
-		self.vidaUtilDisparo = vidaUtilDisparo
+	def setVidaUtilDisparo(self, vidaUtilDisparo): 
+		self._vida_util_disparo = vidaUtilDisparo
 
 	def getNumDisparos(self):
-		return self.numDisparos
+		return self._numero_disparos
 
-	def setNumDisparos(self,numDisparos): 
-		self.numDisparos = numDisparos
+	def setNumDisparos(self, numero_disparos): 
+		self._numero_disparos = numero_disparos
 	
 	def gameOver(self):
 		if (self.getVida() == 0):
@@ -28,23 +31,35 @@ class Nave(AtributosBasicos):
 			return False
 
 	def crearDisparo(self):
-		disparo = Disparo(self.getPosicionX(),self.getPosicionY(),self.getDirec(),self.getVidaUtilDisparo(),self.getDamage())
+		disparo = Disparo(self.getPosicionX(), self.getPosicionY(),
+                          self.getDireccion(), self.getVidaUtilDisparo(),
+                          self.getDamage())
 		Nave.disparos.append(disparo)
 
-	def setDirec(self,rotacion):
-		arreglo = [0,90,180,270]
-		indice = arreglo.index(self.direc)
+	def setDireccion(self, rotacion):
+		arreglo = [0, 90, 180, 270]
+		indice = arreglo.index(self._direccion)
 		if(rotacion == "a"):
 			if(indice == 3):
-				self.direc = arreglo[0]
-				self.imagen = self.imagenes[0]
+				self._direccion = arreglo[0]
+				self._imagen = self._imagenes[0]
 			else:
-				self.direc = arreglo[indice + 1]
-				self.imagen = self.imagenes[indice + 1]
+				self._direccion = arreglo[indice + 1]
+				self._imagen = self._imagenes[indice + 1]
 		else:
 			if(indice == 0):
-				self.direc = arreglo[3]
-				self.imagen = self.imagenes[3]
+				self._direccion = arreglo[3]
+				self._imagen = self._imagenes[3]
 			else:
-				self.direc = arreglo[indice - 1]
-				self.imagen = self.imagenes[indice - 1]
+				self._direccion = arreglo[indice - 1]
+				self._imagen = self._imagenes[indice - 1]
+
+	@staticmethod
+	def reducir_vu():
+		listad = []
+		for i in range(len(Nave.disparos)):
+			Nave.disparos[i].setVidaUtilDisparo(Nave.disparos[i].getVidaUtilDisparo() - 1)
+			if(Nave.disparos[i].getVidaUtilDisparo() <= 0):
+				listad.append(i)
+		while(len(listad) != 0):
+			Nave.disparos.remove(Nave.disparos[listad.pop()])
