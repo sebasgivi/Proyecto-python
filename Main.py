@@ -1,12 +1,15 @@
 import sys
 from Juego import Juego
 from Mensajes import Mensajes
+from Nave import Nave
 
 class Main():
 	
 	if __name__ == "__main__":
+
 		Juego.idioma()
 		juego = Juego()
+
 		while(1 == 1):
 			print(Mensajes.mensajes.get("menu"))
 			opcion=input(Mensajes.mensajes.get("opcion"))

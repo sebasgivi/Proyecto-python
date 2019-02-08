@@ -2,8 +2,10 @@ class Mensajes:
 
 	mensajes= {}
 
+	eleccion_idioma = {"opciones_idio":"IDIOMA:\n1. ESPAÑOL\n2. INGLES\n"
+					   "Por favor seleccione un idioma: "}
 	español = { "menu":
-			 """|---------------------------------------------------------------------------------|
+"""                |---------------------------------------------------------------------------------|
 				|                                                                                 |
 				|         *     *  *****  *****  *****  ***   ****   ***  *****  ***    ***       |
 				|         **   **  *        *    *     *   *  *   *   *     *   *    * *   *      |
@@ -33,28 +35,40 @@ class Mensajes:
 				4)Salir""",
 				"opcion":"Ingrese una opcion: ",
 				"instrucciones":"INSTRUCCIONES",
-				"top puntajes": "TOP PUNTAJES",
+				"top puntajes": "TOP PUNTAJES:",
 				"fin juego":"Fin del Juego",
-				"oleada completa": 
+				"estadojuegoactual":"El juego se encuentra en Pausa, presione P para seguir jugando",
+				"oleada completa":
 				"""Oleada Completada, Desea visitar la tienda?
-				   1)Si 2)No 3)Finalizar""",
-				"numero oleada":"Oleada Numero: ",
-				"vidas":" Vidas: ",
-				"puntaje":"Puntaje: ",
-				"meteoros restantes":"Meteoros Restantes: ",
-				"estado juego":" Estado  Juego: ",
-				"cantidad turnos":" Cantidad de turnos ",
+				   1)Si
+				   2)No
+				   3)Finalizar""",
+				"datos":"|||DATOS DEL JUEGO:|||",
+				"numero oleada":"|||   Oleada Numero: ",
+				"vidas":"  |||   Vidas: ",
+				"puntaje":"  |||   Puntaje: ",
+				"meteoros restantes":"  |||   Meteoros Restantes: ",
+				"estado juego":"\n|||   Estado del Juego: ",
+				"cantidad turnos":"  |||   Cantidad de turnos: ",
+				"dano":"  |||   Daño del disparo:",
+				"velocidad nave":"\n|||   Velocidad de la nave:",
+				"posicion nave":"  |||   Posicion de la nave:",
+				"tamano nave":"  |||   Tamaño de la nave:",
+				"numero de disparos": "\n|||   Numero de disparos maximos al tiempo:",
+				"vidaudisparo":"  |||   Alcance maximo de los disparos:",
 				"tienda":
 				"""Bienvenido a la tienda, ¿qué desea comprar?: 
-			  	   1) Vida
+			  	   1) Vidas
 			 	   2) Más Disparos
-			       3) Vida util de la bala
+			       3) Alcance maximo de los disparos
 			       4) Velocidad de la Nave
 			       5) Daño del disparo
 			       6) Salir
 			       Tu puntaje es: """, 
 			    "costo":"Costo: " ,
-			    "compra exitosa":"Compra Exitosa",
+			    "notealcanza":"No tienes suficientes puntos",
+			    "confirmar compra":"¿Esta seguro que desea comprar esta mejora?\n 1) Si \n 2) regresar",
+			    "compra exitosa":"Compra Exitosa, su nuevo puntaje es: ",
 			    "GameOver":"Fin del juego, Desea Ingresar su puntaje?\n1)Si 2)No: ",
                 "IngreseSuNombre":"Ingrese su nombre(max 5 caracteres)"}
 
