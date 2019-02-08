@@ -43,7 +43,7 @@ class Tienda:
 					personaje.setVel(personaje.getVelocidad() + 1)
 					print("Compra Efectuada, nuevo score: ", Oleada.score)
 			elif (opcion == "5"):
-				costo = Disparo.getDamage() * 50
+				costo = personaje.getDamage() * 50
 				print("costo: ", costo)
 				if (Oleada.score >= costo):
 					Oleada.score = Oleada.score - costo
