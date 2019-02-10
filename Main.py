@@ -19,6 +19,7 @@ class Main():
 				print(Mensajes.mensajes.get("instrucciones"))
 			elif(opcion == "3"):
 				print(Mensajes.mensajes.get("top puntajes"))
+				Juego.MejoresPuntajes()
 			elif(opcion == "4"):
 				SystemExit()
 			juego = 0

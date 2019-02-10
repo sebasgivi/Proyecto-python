@@ -268,7 +268,42 @@ class Juego:
 	def AgregarPuntaje():
 		puntajes = open("MejoresPuntajes.txt", "a")
 		datos = input()[0:5]
-		datos += "    "
-		datos += str(Oleada.score)
-		puntajes.write(datos+"\n")
+		datos += ""
+		puntajes.write(datos+"\n"+ str(Oleada.score))
 		puntajes.close()
+
+
+	def MejoresPuntajes():
+
+		puntajes = open("MejoresPuntajes.txt", "r")
+		lista_pun = puntajes.readlines()
+
+		lista_puntajes = []
+		n = int(float(len(lista_pun)/2))
+		y = 0
+		x = 0
+		while y<n:
+			buscar = lista_pun[x].find("\n")
+			tupla = ((lista_pun[x][:buscar]),(int(lista_pun[x+1])))
+			lista_puntajes.append(tupla)
+			listaBorrar = list(tupla)
+			listaBorrar.clear()
+			x = x + 2
+			y = y + 1
+		puntajes.close()
+		lista_puntajes.sort(key=lambda puntajes: puntajes[1], reverse = True)
+		lista_puntajes = [str(i) for i in lista_puntajes]
+		puntajesTop = open("puntajesTop.txt","w")
+
+		if len(lista_puntajes)>5:
+			for x in range(5):
+				puntajesTop.write(str(x+1) +" " +lista_puntajes[x]+"\n")
+		else:
+			for x in range(len(lista_puntajes)):
+				puntajesTop.write(str(x+1) +" "+ lista_puntajes[x]+"\n")
+		puntajesTop.close()
+
+		puntajesTop = open("puntajesTop.txt","r")
+		texto = puntajesTop.read()
+		print(texto)
+		puntajesTop.close()

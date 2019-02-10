@@ -1,12 +1,12 @@
-ASD    0
-ASD    0
-asd    0
-    0
-Danny    0
-asd    0
-asd    0
-ASD    0
-Sebas    20
-SEbas    0
-Danny    0
-cano    70
+Danny
+1000000
+Cano
+10
+Mello
+500
+Profe
+50
+Mamer
+0
+Preub
+20
