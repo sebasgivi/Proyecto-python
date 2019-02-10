@@ -23,6 +23,9 @@
     <Compile Include="Disparo.py" />
     <Compile Include="Juego.py" />
     <Compile Include="Main.py" />
+    <Compile Include="Mejora.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mensajes.py" />
     <Compile Include="Meteoro.py" />
     <Compile Include="Nave.py" />

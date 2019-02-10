@@ -9,12 +9,11 @@ class Main():
 	if __name__ == "__main__":
 
 		Opciones.changeLanguage()
-		juego = Juego()
-
 		while(1 == 1):
 			print(Mensajes.mensajes.get("menu"))
 			opcion=input(Mensajes.mensajes.get("opcion"))
 			if(opcion == "1"):
+				juego = Juego()
 				juego.jugar()
 			elif(opcion == "2"):
 				print(Mensajes.mensajes.get("instrucciones"))

@@ -77,7 +77,13 @@ class Mensajes:
                 "resy":"Ingrese la resolucion del juego en Y",
                 "up":"Arriba ",
                 "left":"Izquierda ",
-                "right":"Derecha "}
+                "right":"Derecha ",
+                "randomWave":"Desea iniciar una partida aleatoria?\n1)Si\n2)No\n ",
+                "temporaryLife":"Mejora temporal de vida",
+                "temporaryShots":"Mejora temporal de Disparos",
+                "temporaryLifeBullet":"Mejora temporal de vida de la bala",
+                "temporaryShipSpeed":"Mejora temporal de velocidad de la nave",
+                "temporaryDamage":"mejora temporal del damage de la bala"}
 
 	ingles = { "menu":
 			 """|---------------------------------------------------------------------------------|
@@ -117,6 +123,7 @@ class Mensajes:
 				"oleada completa": 
 				"""Wave completed, Do you want to visit the store?
 				   1)Yes 2)No 3)Finish""",
+				"datos":"|||Game Data:|||",
 				"numero oleada":"Wade Number: ",
 				"vidas":" Lives: ",
 				"puntaje":"Score: ",
@@ -140,4 +147,10 @@ class Mensajes:
                 "resy":"Enter the resolution of the game in Y ",
                 "up":"Up ",
                 "left":"Left ",
-                "right":"Right "}
+                "right":"Right ",
+                "randomWave":"Do you want to start a random game?\n1)Yes\n2)No\n",
+                "temporaryLife":"temporary improvement of life",
+                "temporaryShots":"temporary improvement of Shoots",
+                "temporaryLifeBullet":"temporary improvement of Life Bullet",
+                "temporaryShipSpeed":"temporary improvement of Speed",
+                "temporaryDamage":"temporary improvement of Damage"}
