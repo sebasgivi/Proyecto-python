@@ -8,6 +8,7 @@ class Oleada:
 		self._num_oleada = num_oleada
 		self._cantidad_de_turnos = cantidad_de_turnos
 
+
 	def crearMeteoritos(self):
 		for i in range(self.getNumOleada() * 1):
 			meteoro = Meteoro()

@@ -32,10 +32,12 @@ class Mensajes:
 				1)Jugar
 				2)Instrucciones
 				3)Puntajes
-				4)Salir""",
+				4)Opciones
+				5)Salir""",
 				"opcion":"Ingrese una opcion: ",
 				"instrucciones":"INSTRUCCIONES",
 				"top puntajes": "TOP PUNTAJES:",
+				"options" : "1) Cambiar Resolucion del Juego\n2) Cambiar Controles\n3) Cambiar Idioma\n",
 				"fin juego":"Fin del Juego",
 				"estadojuegoactual":"El juego se encuentra en Pausa, presione P para seguir jugando",
 				"oleada completa":
@@ -70,7 +72,12 @@ class Mensajes:
 			    "confirmar compra":"¿Esta seguro que desea comprar esta mejora?\n 1) Si \n 2) regresar",
 			    "compra exitosa":"Compra Exitosa, su nuevo puntaje es: ",
 			    "GameOver":"Fin del juego, Desea Ingresar su puntaje?\n1)Si 2)No: ",
-                "IngreseSuNombre":"Ingrese su nombre(max 5 caracteres)"}
+                "IngreseSuNombre":"Ingrese su nombre(max 5 caracteres)",
+                "resx":"Ingrese la resolucion del juego en X ",
+                "resy":"Ingrese la resolucion del juego en Y",
+                "up":"Arriba ",
+                "left":"Izquierda ",
+                "right":"Derecha "}
 
 	ingles = { "menu":
 			 """|---------------------------------------------------------------------------------|
@@ -100,10 +107,12 @@ class Mensajes:
 				1)Play
 				2)Instructions
 				3)Scores
-				4)Exit""",
+				4)Options
+				5)Exit""",
 				"opcion":"Enter  option: ",
 				"instrucciones":"INSTRUCTIONS",
 				"top puntajes": "TOP SCORES",
+				"options" : "1) Change Game Resolution\n2) Change Game Controls\n3) Change Game Language\n",
 				"fin juego":"Game over",
 				"oleada completa": 
 				"""Wave completed, Do you want to visit the store?
@@ -126,4 +135,9 @@ class Mensajes:
 			    "costo":"Cost: " ,
 			    "compra exitosa":"Successful purchase",
 			    "GameOver":"GameOver, Do you want to add your score?\n1)Yes 2)No: ",
-                "IngreseSuNombre":"enter your username(max 5 char)"}
+                "IngreseSuNombre":"enter your username(max 5 char)",
+                "resx":"Enter the resolution of the game in X ",
+                "resy":"Enter the resolution of the game in Y ",
+                "up":"Up ",
+                "left":"Left ",
+                "right":"Right "}

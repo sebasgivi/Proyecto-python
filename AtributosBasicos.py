@@ -1,5 +1,5 @@
 import math
-from Resolution import Resolution
+from Opciones import Opciones
 class AtributosBasicos:
 	_direcciones = [0, 90, 180, 270]
 	def __init__ (self, posicion_x, posicion_y, vida, medida_hitbox,
@@ -25,8 +25,8 @@ class AtributosBasicos:
 
 	def setPosicionY(self,posicion):
 		if (posicion < 0):
-			self._posicion_y = Resolution.resy   #CAMBIAR POR INTERFAZ.
-		elif (posicion > Resolution.resy):
+			self._posicion_y = Opciones.resy   #CAMBIAR POR INTERFAZ.
+		elif (posicion > Opciones.resy):
 			self._posicion_y = 0
 		else:
 		    self._posicion_y = posicion
@@ -36,8 +36,8 @@ class AtributosBasicos:
 
 	def setPosicionX(self,posicion):       #CAMBIAR POR INTERFAZ.
 		if (posicion < 0):
-		   self._posicion_x = Resolution.resx
-		elif (posicion > Resolution.resx):
+		   self._posicion_x = Opciones.resx
+		elif (posicion > Opciones.resx):
 			self._posicion_x = 0
 		else:
 			self._posicion_x = posicion
@@ -87,24 +87,24 @@ class AtributosBasicos:
 		posx_aux = self.getPosicionX() - self._medida_hitbox
 		posy_aux = self.getPosicionY() - self._medida_hitbox
 		for i in range(2 * self._medida_hitbox):
-			if(posx_aux < Resolution.resx and posy_aux < Resolution.resy and posx_aux > 0
+			if(posx_aux < Opciones.resx and posy_aux < Opciones.resy and posx_aux > 0
                and posy_aux > 0):
-				hit_box.append(posy_aux*Resolution.resx + posx_aux)
+				hit_box.append(posy_aux*Opciones.resx + posx_aux)
 			posx_aux+=1
 		for i in range(2 * self._medida_hitbox):
-			if(posx_aux < Resolution.resx and posy_aux < Resolution.resy and posx_aux > 0
+			if(posx_aux < Opciones.resx and posy_aux < Opciones.resy and posx_aux > 0
                and posy_aux > 0):
-				hit_box.append(posy_aux*Resolution.resx + posx_aux)
+				hit_box.append(posy_aux*Opciones.resx + posx_aux)
 			posy_aux +=1
 		for i in range(2 * self._medida_hitbox):
-			if(posx_aux < Resolution.resx and posy_aux < Resolution.resy and posx_aux > 0
+			if(posx_aux < Opciones.resx and posy_aux < Opciones.resy and posx_aux > 0
                and posy_aux > 0):
-				hit_box.append(posy_aux*Resolution.resx + posx_aux)
+				hit_box.append(posy_aux*Opciones.resx + posx_aux)
 			posx_aux -=1
 		for i in range(2 * self._medida_hitbox):
-			if(posx_aux < Resolution.resx and posy_aux < Resolution.resy and posx_aux > 0
+			if(posx_aux < Opciones.resx and posy_aux < Opciones.resy and posx_aux > 0
                and posy_aux > 0):
-				hit_box.append(posy_aux*Resolution.resx + posx_aux)
+				hit_box.append(posy_aux*Opciones.resx + posx_aux)
 			posy_aux -=1
 
 		return hit_box

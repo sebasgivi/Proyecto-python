@@ -1,13 +1,13 @@
 from AtributosBasicos import AtributosBasicos
 from Disparo import Disparo
-from Resolution import Resolution
+from Opciones import Opciones
 
 class Nave(AtributosBasicos):
 	"""docstring for Nave"""
 	disparos = []
 	def __init__(self, imagenes = [">","^","<","v"], numero_disparos = 3,
                  vida_util_disparo = 10):
-		super(Nave, self).__init__(Resolution.resx/2, Resolution.resy/2, 3, 1, 5, 90, "^", 1)
+		super(Nave, self).__init__(Opciones.resx/2, Opciones.resy/2, 3, 1, 5, 90, "^", 1)
 		self._numero_disparos = numero_disparos
 		self._imagenes = imagenes
 		self._vida_util_disparo = vida_util_disparo

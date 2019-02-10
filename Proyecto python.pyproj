@@ -27,7 +27,7 @@
     <Compile Include="Meteoro.py" />
     <Compile Include="Nave.py" />
     <Compile Include="Oleada.py" />
-    <Compile Include="Resolution.py" />
+    <Compile Include="Opciones.py" />
     <Compile Include="Tienda.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
