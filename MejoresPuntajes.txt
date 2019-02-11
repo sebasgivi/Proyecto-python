@@ -9,4 +9,8 @@ Profe
 Mamer
 0
 Sirve
+<<<<<<< HEAD
 20
+=======
+20
+>>>>>>> parent of 783043f... Ya funciona

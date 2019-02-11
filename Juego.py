@@ -269,7 +269,7 @@ class Juego:
 		puntajes = open("MejoresPuntajes.txt", "a")
 		datos = input()[0:5]
 		datos += ""
-		puntajes.write(datos+"\n"+ str(Oleada.score)+"\n")
+		puntajes.write(datos+"\n"+ str(Oleada.score))
 		puntajes.close()
 
 
