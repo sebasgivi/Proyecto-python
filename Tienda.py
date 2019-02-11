@@ -52,13 +52,13 @@ class Tienda:
 					confirmarcompra = input()
 					if (confirmarcompra == "1"):
 						Oleada.score = Oleada.score - costo
-						personaje.setVel(personaje.getVelocidad() + 1)
+						personaje.setVelocidad(personaje.getVelocidad() + 1)
 						print("Compra Efectuada, nuevo score: ", Oleada.score)
 				else:
 					print(Mensajes.mensajes.get("notealcanza"))
 			elif (opcion == "5"):
-				costo = Disparo.getDamage() * 50
-				print("costo", costo)
+				costo = personaje.getDamage() * 50
+				print("costo: ", costo)
 				if (Oleada.score >= costo):
 					print(Mensajes.mensajes.get("confirmar compra"))
 					confirmarcompra = input()
