@@ -10,3 +10,11 @@ Mamer
 0
 Sirve
 20
+DANNY
+10
+elmo
+20
+Goku
+50
+Yordi
+40
