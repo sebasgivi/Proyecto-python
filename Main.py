@@ -26,13 +26,15 @@ class Main():
 					resy = input(Mensajes.mensajes.get("resy"))
 					Opciones.changeOpciones(resx, resy)
 				elif(option == "2"):
-					up = input(Mensajes.mensajes.get("up"))
+					move = input(Mensajes.mensajes.get("move"))
 					left = input(Mensajes.mensajes.get("left"))
 					right = input(Mensajes.mensajes.get("right"))
-					Opciones.changeControls(up, left, right)
+					shot = input(Mensajes.mensajes.get("shot"))
+					Opciones.changeControls(move, left, right, shot)
 				elif(option == "3"):
 					Opciones.changeLanguage()
 			elif(opcion == "5"):
+				print(Mensajes.mensajes.get("PONGAME5"))
 				break
 			juego = 0
 			juego = Juego()

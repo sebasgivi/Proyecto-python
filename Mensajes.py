@@ -39,7 +39,7 @@ class Mensajes:
 				"top puntajes": "TOP PUNTAJES:",
 				"options" : "1) Cambiar Resolucion del Juego\n2) Cambiar Controles\n3) Cambiar Idioma\n",
 				"fin juego":"Fin del Juego",
-				"estadojuegoactual":"El juego se encuentra en Pausa, presione P para seguir jugando",
+				"pausado":"El juego se encuentra en Pausa, presione P para seguir jugando",
 				"oleada completa":
 				"""Oleada Completada, Desea visitar la tienda?
 				   1)Si
@@ -50,12 +50,11 @@ class Mensajes:
 				"vidas":"  |||   Vidas: ",
 				"puntaje":"  |||   Puntaje: ",
 				"meteoros restantes":"  |||   Meteoros Restantes: ",
-				"estado juego":"\n|||   Estado del Juego: ",
+				"juego en pausa":"\n|||   Juego en pausa: ",
 				"cantidad turnos":"  |||   Cantidad de turnos: ",
 				"dano":"  |||   Daño del disparo:",
 				"velocidad nave":"\n|||   Velocidad de la nave:",
 				"posicion nave":"  |||   Posicion de la nave:",
-				"tamano nave":"  |||   Tamaño de la nave:",
 				"numero de disparos": "\n|||   Numero de disparos maximos al tiempo:",
 				"vidaudisparo":"  |||   Alcance maximo de los disparos:",
 				"tienda":
@@ -75,15 +74,18 @@ class Mensajes:
                 "IngreseSuNombre":"Ingrese su nombre(max 5 caracteres)",
                 "resx":"Ingrese la resolucion del juego en X ",
                 "resy":"Ingrese la resolucion del juego en Y",
-                "up":"Arriba ",
+                "move":"Avanzar ",
                 "left":"Izquierda ",
                 "right":"Derecha ",
+                "shot":"Disparo ",
+                "cambios no realizados": "Los cambios no se han guardado porque asignaste la misma letra en dos controles diferentes",
                 "randomWave":"Desea iniciar una partida aleatoria?\n1)Si\n2)No\n ",
                 "temporaryLife":"Mejora temporal de vida",
                 "temporaryShots":"Mejora temporal de Disparos",
                 "temporaryLifeBullet":"Mejora temporal de vida de la bala",
                 "temporaryShipSpeed":"Mejora temporal de velocidad de la nave",
-                "temporaryDamage":"mejora temporal del damage de la bala"}
+                "temporaryDamage":"mejora temporal del damage de la bala",
+                "PONGAME5":"JUEGO tERMINADO; Pongame 5.0"}
 
 	ingles = { "menu":
 			 """|---------------------------------------------------------------------------------|
@@ -128,7 +130,7 @@ class Mensajes:
 				"vidas":" Lives: ",
 				"puntaje":"Score: ",
 				"meteoros restantes":"Meteors remaining: ",
-				"estado juego":" State Game: ",
+				"pausa":" Game paused: ",
 				"cantidad turnos":"Turns Number",
 				"tienda":
 				"""Welcome to the store, what do you want to buy?: 
@@ -145,9 +147,10 @@ class Mensajes:
                 "IngreseSuNombre":"enter your username(max 5 char)",
                 "resx":"Enter the resolution of the game in X ",
                 "resy":"Enter the resolution of the game in Y ",
-                "up":"Up ",
+                "move":"move ",
                 "left":"Left ",
                 "right":"Right ",
+                "shot":"Shot ",
                 "randomWave":"Do you want to start a random game?\n1)Yes\n2)No\n",
                 "temporaryLife":"temporary improvement of life",
                 "temporaryShots":"temporary improvement of Shoots",

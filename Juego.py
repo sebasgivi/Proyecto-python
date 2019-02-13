@@ -14,8 +14,8 @@ class Juego:
 		self._oleada = oleada
 		self._personaje = personaje
 
-	def setEstadoJuego(self):
-		if(self.getEstadoJuego() == True):
+	def setPause(self):
+		if(self.getPause() == True):
 			self._pause = False
 		else:
 			self._pause = True
@@ -30,10 +30,9 @@ class Juego:
 		controlList = Opciones.getControlList()
 
 		while((self._personaje.gameOver()) == False):
-			if(self.getEstadoJuego()):
 				self.graficar()
 				opcion = input()
-				if(self.getEstadoJuego() == True):
+				if(self.getPause() == True):
 					if(opcion == controlList[1] or opcion == controlList[2]):
 						self._personaje.setDireccion(opcion)
 						self.refrescar()
@@ -42,21 +41,20 @@ class Juego:
 							self._personaje.avanzar()
 							self.colision()
 						self.refrescar()
-					elif(opcion == "f"):
+					elif(opcion == controlList[3]):
 						if(len(Nave.disparos) < self._personaje.getNumDisparos()):
 							self._personaje.crearDisparo()
 							self.refrescar()
 					elif(opcion == "p"):
-						self.setEstadoJuego()
-						print(Mensajes.mensajes.get("estadojuegoactual"))
+						self.setPause()
+						
 					else:
 						self.refrescar()
 				else:
+					
 					if(opcion == "p"):
-						self.setEstadoJuego()
-			else:
-				if(self.getEstadoJuego() == True):
-					self.refrescar()
+						self.setPause()
+
 		print(Mensajes.mensajes.get("GameOver"))
 		if(input() == "1"):
 			print(Mensajes.mensajes.get("IngreseSuNombre"),"Score ",Oleada.score)
@@ -68,7 +66,7 @@ class Juego:
 
 
 
-	def getEstadoJuego(self):
+	def getPause(self):
 		return self._pause
 
 	def colision(self):
@@ -175,10 +173,9 @@ class Juego:
 		print(Mensajes.mensajes.get("datos"))
 		print(Mensajes.mensajes.get("numero oleada"),self._oleada.getNumOleada(),Mensajes.mensajes.get("vidas"),self._personaje.getVida(),
 			Mensajes.mensajes.get("puntaje"),Oleada.score,Mensajes.mensajes.get("meteoros restantes"),len(self._oleada.meteoros),
-		    Mensajes.mensajes.get("estado juego"),self.getEstadoJuego(),Mensajes.mensajes.get("cantidad turnos"),self._oleada.getCantidadDeTurnos(),
+		    Mensajes.mensajes.get("juego en pausa"),not(self.getPause()),Mensajes.mensajes.get("cantidad turnos"),self._oleada.getCantidadDeTurnos(),
 		    Mensajes.mensajes.get("dano") ,self._personaje.getDamage(),Mensajes.mensajes.get("velocidad nave") , self._personaje.getVelocidad(),
-			Mensajes.mensajes.get("posicion nave"),"(", self._personaje.getPosicionX(),",", self._personaje.getPosicionY(),")", 
-			Mensajes.mensajes.get("tamano nave"), self._personaje.getMedidaHitBox(),Mensajes.mensajes.get("numero de disparos"), self._personaje.getNumDisparos(),
+			Mensajes.mensajes.get("posicion nave"),"(", self._personaje.getPosicionX(),",", self._personaje.getPosicionY(),")",Mensajes.mensajes.get("numero de disparos"), self._personaje.getNumDisparos(),
 			Mensajes.mensajes.get("vidaudisparo"), self._personaje.getVidaUtilDisparo())
 		for i in range(Opciones.resx):
 			print("-",end="")
@@ -202,6 +199,8 @@ class Juego:
 		for i in range(Opciones.resx):
 			print("-",end="")
 		print("\n")
+		if (not(self.getPause()) == True):
+			print(Mensajes.mensajes.get("pausado"))
 		
 	def imprimirRadios(self,listam,listad):
 		matriz = []
