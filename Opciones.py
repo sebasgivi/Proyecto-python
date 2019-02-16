@@ -21,7 +21,7 @@ class Opciones:
 		if (cancelar_cambio == 1):
 
 			Opciones._controlList = ["w", "a", "d", "f"]
-			print(Mensajes.mensajes.get("cambios no realizados"))
+			print(Mensajes.mensajes.get("unrealized changes"))
 	def getControlList():
 		return Opciones._controlList
 
@@ -30,7 +30,7 @@ class Opciones:
 		Opciones.resy = int(resy)
 
 	def changeLanguage():
-		print(Mensajes.eleccion_idioma.get("opciones_idio"))
+		print(Mensajes.eleccion_idioma.get("language option"))
 		idioma = input()
 		if idioma == "1":
 			Mensajes.mensajes = Mensajes.español
