@@ -286,9 +286,16 @@ class Juego:
 	@staticmethod
 	def AgregarPuntaje():
 		puntajes = open("MejoresPuntajes.txt", "a")
+		puntajes2 = open("MejoresPuntajes.txt", "r")
+		listaPuntajes = puntajes2.readlines()
 		datos = input()[0:5]
 		datos += ""
-		puntajes.write("\n"+datos+"\n"+ str(Oleada.score))
+		if (len(listaPuntajes)==0):
+			puntajes.write(datos+"\n"+ str(Oleada.score))
+		else:
+			puntajes.write("\n"+datos+"\n"+ str(Oleada.score))
+				
+		puntajes2.close()
 		puntajes.close()
 
 
