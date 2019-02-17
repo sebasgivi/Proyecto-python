@@ -15,23 +15,23 @@ class Mejora(AtributosBasicos):
 		if(opcion == 0):
 			nave.setVida(nave.getVida() + 1)
 			Mejora._mejoras_activas.append(self)
-			print(Mensajes.mensajes.get("temporaryLife"))
+			print(Mensajes.mensajes.get("temporary life"))
 		elif(opcion == 1):
 			nave.setNumDisparos(nave.getNumDisparos() + 1)
 			Mejora._mejoras_activas.append(self)
-			print(Mensajes.mensajes.get("temporaryShots"))
+			print(Mensajes.mensajes.get("temporary shots"))
 		elif(opcion == 2):
 			nave.setVidaUtilDisparo(nave.getVidaUtilDisparo() + 1)
 			Mejora._mejoras_activas.append(self)
-			print(Mensajes.mensajes.get("temporaryLifeBullet"))
+			print(Mensajes.mensajes.get("temporary life bullet"))
 		elif(opcion == 3):
 			nave.setVelocidad(nave.getVelocidad() + 1)
 			Mejora._mejoras_activas.append(self)
-			print(Mensajes.mensajes.get("temporaryShipSpeed"))
+			print(Mensajes.mensajes.get("temporary ship speed"))
 		elif(opcion == 4):
 			nave.setDamage(nave.getDamage() + 1)
 			Mejora._mejoras_activas.append(self)
-			print(Mensajes.mensajes.get("temporaryDamage"))
+			print(Mensajes.mensajes.get("temporary damage"))
 		return nave
 
 	def BorrarMejoras(nave):

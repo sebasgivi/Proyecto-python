@@ -11,29 +11,31 @@ class Main():
 		Opciones.changeLanguage()
 		while(1 == 1):
 			print(Mensajes.mensajes.get("menu"))
-			opcion=input(Mensajes.mensajes.get("opcion"))
+			opcion=input(Mensajes.mensajes.get("option menu"))
 			if(opcion == "1"):
 				juego = Juego()
 				juego.jugar()
 			elif(opcion == "2"):
-				print(Mensajes.mensajes.get("instrucciones"))
+				print(Mensajes.mensajes.get("instructions"))
 			elif(opcion == "3"):
-				print(Mensajes.mensajes.get("top puntajes"))
+				print(Mensajes.mensajes.get("top scores"))
 				Juego.MejoresPuntajes()
 			elif(opcion == "4"):
 				option = input(Mensajes.mensajes.get("options"))
 				if(option == "1"):
 					resx = input(Mensajes.mensajes.get("resx"))
 					resy = input(Mensajes.mensajes.get("resy"))
-					Opciones.changeOpciones(resx, resy)
+					Opciones.changeResolution(resx, resy)
 				elif(option == "2"):
-					up = input(Mensajes.mensajes.get("up"))
+					move = input(Mensajes.mensajes.get("move"))
 					left = input(Mensajes.mensajes.get("left"))
 					right = input(Mensajes.mensajes.get("right"))
-					Opciones.changeControls(up, left, right)
+					shot = input(Mensajes.mensajes.get("shot"))
+					Opciones.changeControls(move, left, right, shot)
 				elif(option == "3"):
 					Opciones.changeLanguage()
 			elif(opcion == "5"):
+				print(Mensajes.mensajes.get("put me 5"))
 				break
 			juego = 0
 			juego = Juego()

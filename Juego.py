@@ -14,15 +14,15 @@ class Juego:
 		self._oleada = oleada
 		self._personaje = personaje
 
-	def setEstadoJuego(self):
-		if(self.getEstadoJuego() == True):
+	def setPause(self):
+		if(self.getPause() == True):
 			self._pause = False
 		else:
 			self._pause = True
 
 	def jugar(self):
 		self._oleada = Oleada()
-		if(input(Mensajes.mensajes.get("randomWave")) == "1"):
+		if(input(Mensajes.mensajes.get("random wave")) == "1"):
 			self.RandomWave()
 		self._oleada.crearMeteoritos()
 		self._personaje = Nave()
@@ -30,10 +30,9 @@ class Juego:
 		controlList = Opciones.getControlList()
 
 		while((self._personaje.gameOver()) == False):
-			if(self.getEstadoJuego()):
 				self.graficar()
 				opcion = input()
-				if(self.getEstadoJuego() == True):
+				if(self.getPause() == True):
 					if(opcion == controlList[1] or opcion == controlList[2]):
 						self._personaje.setDireccion(opcion)
 						self.refrescar()
@@ -42,24 +41,23 @@ class Juego:
 							self._personaje.avanzar()
 							self.colision()
 						self.refrescar()
-					elif(opcion == "f"):
+					elif(opcion == controlList[3]):
 						if(len(Nave.disparos) < self._personaje.getNumDisparos()):
 							self._personaje.crearDisparo()
 							self.refrescar()
 					elif(opcion == "p"):
-						self.setEstadoJuego()
-						print(Mensajes.mensajes.get("estadojuegoactual"))
+						self.setPause()
+						
 					else:
 						self.refrescar()
 				else:
+					
 					if(opcion == "p"):
-						self.setEstadoJuego()
-			else:
-				if(self.getEstadoJuego() == True):
-					self.refrescar()
-		print(Mensajes.mensajes.get("GameOver"))
+						self.setPause()
+
+		print(Mensajes.mensajes.get("game over"))
 		if(input() == "1"):
-			print(Mensajes.mensajes.get("IngreseSuNombre"),"Score ",Oleada.score)
+			print(Mensajes.mensajes.get("enter your name"),"Score ",Oleada.score)
 			Juego.AgregarPuntaje()
 		self._personaje = Nave()
 		self._oleada.meteoros = []
@@ -68,7 +66,7 @@ class Juego:
 
 
 
-	def getEstadoJuego(self):
+	def getPause(self):
 		return self._pause
 
 	def colision(self):
@@ -153,7 +151,7 @@ class Juego:
 				return 0
 			opcion = 4
 			Mejora.BorrarMejoras(self._personaje)
-			print(Mensajes.mensajes.get("oleada completa"))
+			print(Mensajes.mensajes.get("wave completed"))
 			#self._personaje = Mejora.ENSAYO(self._personaje)
 			while(opcion != "1" and opcion != "2" and opcion != "3"):
 				opcion = input()
@@ -172,14 +170,13 @@ class Juego:
 		return 0
 
 	def graficar(self):
-		print(Mensajes.mensajes.get("datos"))
-		print(Mensajes.mensajes.get("numero oleada"),self._oleada.getNumOleada(),Mensajes.mensajes.get("vidas"),self._personaje.getVida(),
-			Mensajes.mensajes.get("puntaje"),Oleada.score,Mensajes.mensajes.get("meteoros restantes"),len(self._oleada.meteoros),
-		    Mensajes.mensajes.get("estado juego"),self.getEstadoJuego(),Mensajes.mensajes.get("cantidad turnos"),self._oleada.getCantidadDeTurnos(),
-		    Mensajes.mensajes.get("dano") ,self._personaje.getDamage(),Mensajes.mensajes.get("velocidad nave") , self._personaje.getVelocidad(),
-			Mensajes.mensajes.get("posicion nave"),"(", self._personaje.getPosicionX(),",", self._personaje.getPosicionY(),")", 
-			Mensajes.mensajes.get("tamano nave"), self._personaje.getMedidaHitBox(),Mensajes.mensajes.get("numero de disparos"), self._personaje.getNumDisparos(),
-			Mensajes.mensajes.get("vidaudisparo"), self._personaje.getVidaUtilDisparo())
+		print(Mensajes.mensajes.get("data"))
+		print(Mensajes.mensajes.get("wave number"),self._oleada.getNumOleada(),Mensajes.mensajes.get("lifes"),self._personaje.getVida(),
+			Mensajes.mensajes.get("score"),Oleada.score,Mensajes.mensajes.get("meteorites remaining"),len(self._oleada.meteoros),
+		    Mensajes.mensajes.get("game paused"),not(self.getPause()),Mensajes.mensajes.get("number of shift"),self._oleada.getCantidadDeTurnos(),
+		    Mensajes.mensajes.get("damage") ,self._personaje.getDamage(),Mensajes.mensajes.get("ship speed") , self._personaje.getVelocidad(),
+			Mensajes.mensajes.get("ship position"),"(", self._personaje.getPosicionX(),",", self._personaje.getPosicionY(),")",Mensajes.mensajes.get("number shots"), self._personaje.getNumDisparos(),
+			Mensajes.mensajes.get("shots life"), self._personaje.getVidaUtilDisparo())
 		for i in range(Opciones.resx):
 			print("-",end="")
 		print("\n")
@@ -202,6 +199,8 @@ class Juego:
 		for i in range(Opciones.resx):
 			print("-",end="")
 		print("\n")
+		if (not(self.getPause()) == True):
+			print(Mensajes.mensajes.get("paused"))
 		
 	def imprimirRadios(self,listam,listad):
 		matriz = []
@@ -283,14 +282,7 @@ class Juego:
 				matriz[posx_aux][posy_aux] = self._personaje.getImagen()
 			posy_aux-=1
 		return matriz
-	"""def ImprimirDatosNave(self):
-		print("Vidas: ",self._personaje.getVida() ,"Daño: " , self._personaje.getDamage(),
-			   "Velociada: " , self._personaje.getVelocidad(),
-			   "pociciones: \n         Y: ", self._personaje.getPosicionY(), 
-			    "       X:", self._personaje.getPosicionX(), 
-			      "MEdida hitbox: ", self._personaje.getMedidaHitBox(),
-			      "numero de disparos: ", self._personaje.getNumDisparos(),"vidadisparo: ", self._personaje.getVidaUtilDisparo())
-	"""
+	
 	@staticmethod
 	def AgregarPuntaje():
 		puntajes = open("MejoresPuntajes.txt", "a")
