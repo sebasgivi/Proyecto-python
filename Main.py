@@ -19,6 +19,7 @@ class Main():
 				print(Mensajes.mensajes.get("instructions"))
 			elif(opcion == "3"):
 				print(Mensajes.mensajes.get("top scores"))
+				Juego.MejoresPuntajes()
 			elif(opcion == "4"):
 				option = input(Mensajes.mensajes.get("options"))
 				if(option == "1"):
