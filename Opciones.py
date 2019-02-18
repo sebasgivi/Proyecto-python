@@ -34,7 +34,9 @@ class Opciones:
 		idioma = input()
 		if idioma == "1":
 			Mensajes.mensajes = Mensajes.español
-		else:
+		elif idioma == "2":
 			Mensajes.mensajes = Mensajes.ingles
-
+		else: 
+			print(Mensajes.eleccion_idioma.get("invalid option"))
+			Opciones.changeLanguage()
 

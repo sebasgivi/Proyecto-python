@@ -1,6 +1,7 @@
 from AtributosBasicos import AtributosBasicos
 
 class Disparo(AtributosBasicos):
+	disparos = []
 
 	def __init__(self,posicionx,posiciony,direccion,vida_util_disparo,damage):
 		super(Disparo, self).__init__(posicionx + self.direccionDisparo(direccion)[0], 
@@ -29,3 +30,20 @@ class Disparo(AtributosBasicos):
 			arreglo.append(0)
 			arreglo.append(1)
 		return arreglo
+
+	staticmethod	
+	def crearDisparo(posicionX, posicionY, direccion, vidautil, damage):
+		disparo = Disparo(posicionX, posicionY,
+                          direccion, vidautil,
+                          damage)
+		Disparo.disparos.append(disparo)
+
+	staticmethod
+	def reducirVidaUtil():
+		listad = []
+		for i in range(len(Disparo.disparos)):
+			Disparo.disparos[i].setVidaUtilDisparo(Disparo.disparos[i].getVidaUtilDisparo() - 1)
+			if(Disparo.disparos[i].getVidaUtilDisparo() <= 0):
+				listad.append(i)
+		while(len(listad) != 0):
+			Disparo.disparos.remove(Disparo.disparos[listad.pop()])

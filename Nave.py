@@ -4,7 +4,7 @@ from Opciones import Opciones
 
 class Nave(AtributosBasicos):
 	"""docstring for Nave"""
-	disparos = []
+	
 	def __init__(self, posicion_x = Opciones.resx/2, posicion_y = Opciones.resy/2, 
                  vida = 3, imagenes = [">","^","<","v"], numero_disparos = 3,
                  vida_util_disparo = 10):
@@ -31,11 +31,7 @@ class Nave(AtributosBasicos):
 		else:
 			return False
 
-	def crearDisparo(self):
-		disparo = Disparo(self.getPosicionX(), self.getPosicionY(),
-                          self.getDireccion(), self.getVidaUtilDisparo(),
-                          self.getDamage())
-		Nave.disparos.append(disparo)
+	
 
 	def setDireccion(self, rotacion):
 		arreglo = [0, 90, 180, 270]
@@ -55,12 +51,4 @@ class Nave(AtributosBasicos):
 				self._direccion = arreglo[indice - 1]
 				self._imagen = self._imagenes[indice - 1]
 
-	@staticmethod
-	def reducirVidaUtil():
-		listad = []
-		for i in range(len(Nave.disparos)):
-			Nave.disparos[i].setVidaUtilDisparo(Nave.disparos[i].getVidaUtilDisparo() - 1)
-			if(Nave.disparos[i].getVidaUtilDisparo() <= 0):
-				listad.append(i)
-		while(len(listad) != 0):
-			Nave.disparos.remove(Nave.disparos[listad.pop()])
+	
