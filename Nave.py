@@ -1,13 +1,14 @@
 from AtributosBasicos import AtributosBasicos
 from Disparo import Disparo
-from Resolution import Resolution
+from Opciones import Opciones
 
 class Nave(AtributosBasicos):
 	"""docstring for Nave"""
 	disparos = []
-	def __init__(self, imagenes = [">","^","<","v"], numero_disparos = 3,
+	def __init__(self, posicion_x = Opciones.resx/2, posicion_y = Opciones.resy/2, 
+                 vida = 3, imagenes = [">","^","<","v"], numero_disparos = 3,
                  vida_util_disparo = 10):
-		super(Nave, self).__init__(Resolution.resx/2, Resolution.resy/2, 3, 1, 5, 90, "^", 1)
+		super(Nave, self).__init__(posicion_x, posicion_y, vida, 1, 5, 90, "^", 1)
 		self._numero_disparos = numero_disparos
 		self._imagenes = imagenes
 		self._vida_util_disparo = vida_util_disparo
@@ -55,7 +56,7 @@ class Nave(AtributosBasicos):
 				self._imagen = self._imagenes[indice - 1]
 
 	@staticmethod
-	def reducir_vu():
+	def reducirVidaUtil():
 		listad = []
 		for i in range(len(Nave.disparos)):
 			Nave.disparos[i].setVidaUtilDisparo(Nave.disparos[i].getVidaUtilDisparo() - 1)

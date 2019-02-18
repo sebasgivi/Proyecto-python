@@ -2,25 +2,40 @@ import sys
 from Juego import Juego
 from Mensajes import Mensajes
 from Nave import Nave
+from Opciones import Opciones
 
 class Main():
 	
 	if __name__ == "__main__":
 
-		Juego.idioma()
-		juego = Juego()
-
+		Opciones.changeLanguage()
 		while(1 == 1):
 			print(Mensajes.mensajes.get("menu"))
-			opcion=input(Mensajes.mensajes.get("opcion"))
+			opcion=input(Mensajes.mensajes.get("option menu"))
 			if(opcion == "1"):
+				juego = Juego()
 				juego.jugar()
 			elif(opcion == "2"):
-				print(Mensajes.mensajes.get("instrucciones"))
+				print(Mensajes.mensajes.get("instructions"))
 			elif(opcion == "3"):
-				print(Mensajes.mensajes.get("top puntajes"))
-				Juego.MejoresPuntajes()
+				print(Mensajes.mensajes.get("top scores"))
+				Juego.mejoresPuntajes()
 			elif(opcion == "4"):
-				SystemExit()
+				option = input(Mensajes.mensajes.get("options"))
+				if(option == "1"):
+					resx = input(Mensajes.mensajes.get("resx"))
+					resy = input(Mensajes.mensajes.get("resy"))
+					Opciones.changeResolution(resx, resy)
+				elif(option == "2"):
+					move = input(Mensajes.mensajes.get("move"))
+					left = input(Mensajes.mensajes.get("left"))
+					right = input(Mensajes.mensajes.get("right"))
+					shot = input(Mensajes.mensajes.get("shot"))
+					Opciones.changeControls(move, left, right, shot)
+				elif(option == "3"):
+					Opciones.changeLanguage()
+			elif(opcion == "5"):
+				print(Mensajes.mensajes.get("put me 5"))
+				break
 			juego = 0
 			juego = Juego()
