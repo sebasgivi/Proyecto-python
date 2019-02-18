@@ -3,8 +3,6 @@ from Mensajes import Mensajes
 class Tienda:
 	@staticmethod
 	def comprar(personaje):
-		costo = 0
-		#SON de LA CLASE MENSJAE, PASAR DESPUES
 		print(Mensajes.mensajes.get("shop"), Oleada.score)
 		opcion =input()
 		while (True):

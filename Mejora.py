@@ -34,7 +34,7 @@ class Mejora(AtributosBasicos):
 			print(Mensajes.mensajes.get("temporary damage"))
 		return nave
 
-	def BorrarMejoras(nave):
+	def borrarMejoras(nave):
 		while(len(Mejora._mejoras_activas) > 0):
 			opcion = Mejora._mejoras_activas.pop()._cualidad
 			if(opcion == 0):

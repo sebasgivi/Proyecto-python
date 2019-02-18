@@ -23,25 +23,25 @@ class Juego:
 	def jugar(self):
 		self._oleada = Oleada()
 		if(input(Mensajes.mensajes.get("random wave")) == "1"):
-			self.RandomWave()
-		self._oleada.crearMeteoritos()
+			self.randomWave()
+		self._oleada.crearOleada()
 		self._personaje = Nave()
-		self._oleada.crearMeteoritos()
-		controlList = Opciones.getControlList()
+		self._oleada.crearOleada()
+		control_list = Opciones.getControlList()
 
 		while((self._personaje.gameOver()) == False):
 				self.graficar()
 				opcion = input()
 				if(self.getPause() == True):
-					if(opcion == controlList[1] or opcion == controlList[2]):
+					if(opcion == control_list[1] or opcion == control_list[2]):
 						self._personaje.setDireccion(opcion)
 						self.refrescar()
-					elif(opcion == controlList[0]):
+					elif(opcion == control_list[0]):
 						for i in range(self._personaje.getVelocidad()):
 							self._personaje.avanzar()
 							self.colision()
 						self.refrescar()
-					elif(opcion == controlList[3]):
+					elif(opcion == control_list[3]):
 						if(len(Nave.disparos) < self._personaje.getNumDisparos()):
 							self._personaje.crearDisparo()
 							self.refrescar()
@@ -58,9 +58,10 @@ class Juego:
 		print(Mensajes.mensajes.get("game over"))
 		if(input() == "1"):
 			print(Mensajes.mensajes.get("enter your name"),"Score ",Oleada.score)
-			Juego.AgregarPuntaje()
+			Juego.agregarPuntaje()
+		lista = []
 		self._personaje = Nave()
-		self._oleada.meteoros = []
+		self._oleada.setListaMeteoros(lista) 
 		Nave.disparos = []
 
 
@@ -73,40 +74,40 @@ class Juego:
 		pila_m = []
 		pila_d = []
 		pila_mejoras = []
-		for i in range(len(self._oleada.meteoros)):
-			for j in range(i + 1, len(self._oleada.meteoros)):
-				if(self.verificar(self._oleada.meteoros[i], self._oleada.meteoros[j]) == True):
-					self._oleada.meteoros[i].setVida(self._oleada.meteoros[i].getVida()
-											   - self._oleada.meteoros[j].getDamage())
-					self._oleada.meteoros[j].setVida(self._oleada.meteoros[j].getVida()
-											   - self._oleada.meteoros[i].getDamage())
+		for i in range(len(self._oleada.getListaMeteoros())):
+			for j in range(i + 1, len(self._oleada.getListaMeteoros())):
+				if(self.verificar(self._oleada.getListaMeteoros()[i], self._oleada.getListaMeteoros()[j]) == True):
+					self._oleada.getListaMeteoros()[i].setVida(self._oleada.getListaMeteoros()[i].getVida()
+											   - self._oleada.getListaMeteoros()[j].getDamage())
+					self._oleada.getListaMeteoros()[j].setVida(self._oleada.getListaMeteoros()[j].getVida()
+											   - self._oleada.getListaMeteoros()[i].getDamage())
 					if(not i in pila_m and
-					   self._oleada.meteoros[i].getVida() <= 0):
+					   self._oleada.getListaMeteoros()[i].getVida() <= 0):
 						pila_m.append(i)
 					if(not j in pila_m and
-					   self._oleada.meteoros[j].getVida() <= 0):
+					   self._oleada.getListaMeteoros()[j].getVida() <= 0):
 						pila_m.append(j)
 
 		for i in range(len(Nave.disparos)):
-			for j in range(len(self._oleada.meteoros)):
-				if(self.verificar(Nave.disparos[i], self._oleada.meteoros[j]) == True):
-					self._oleada.meteoros[j].setVida(self._oleada.meteoros[j].getVida()
+			for j in range(len(self._oleada.getListaMeteoros())):
+				if(self.verificar(Nave.disparos[i], self._oleada.getListaMeteoros()[j]) == True):
+					self._oleada.getListaMeteoros()[j].setVida(self._oleada.getListaMeteoros()[j].getVida()
 											   - Nave.disparos[i].getDamage())
 					if(not i in pila_d):
 						pila_d.append(i)
 					if(not j in pila_m and
-					   self._oleada.meteoros[j].getVida() <= 0):
+					   self._oleada.getListaMeteoros()[j].getVida() <= 0):
 						pila_m.append(j)
 
-		for i in range(len(self._oleada.meteoros)):
-			if(self.verificar(self._personaje, self._oleada.meteoros[i])):
-				self._personaje.setVida(self._personaje.getVida() - self._oleada.meteoros[i].getDamage())
+		for i in range(len(self._oleada.getListaMeteoros())):
+			if(self.verificar(self._personaje, self._oleada.getListaMeteoros()[i])):
+				self._personaje.setVida(self._personaje.getVida() - self._oleada.getListaMeteoros()[i].getDamage())
 				if(not i in pila_m):
 					pila_m.append(i)
 					self._oleada.setMeteorosDestruidos(self._oleada.getMeteorosDestruidos() + 1)
 		pila_m.sort()
 		while(len(pila_m) > 0):
-			self._oleada.meteoros.remove(self._oleada.meteoros[pila_m.pop()])
+			self._oleada.getListaMeteoros().remove(self._oleada.getListaMeteoros()[pila_m.pop()])
 		while(len(pila_d) > 0):
 			Nave.disparos.remove(Nave.disparos[pila_d.pop()])
 			Oleada.score+=10
@@ -127,15 +128,15 @@ class Juego:
 		return False
 
 	def refrescar(self):
-		if(len(self._oleada.meteoros) > 0):
-			vel_m = int(self._oleada.meteoros[0].getVelocidad())
+		if(len(self._oleada.getListaMeteoros()) > 0):
+			vel_m = int(self._oleada.getListaMeteoros()[0].getVelocidad())
 			self._oleada.setCantidadDeTurnos(self._oleada.getCantidadDeTurnos() + 1)
 			if(self._oleada.getCantidadDeTurnos() % 5 == 0):
 				Mejora(random.randrange(0, Opciones.resx),
                                              random.randrange(0, Opciones.resy))
 			for j in range(vel_m):
-				for i in range(len(self._oleada.meteoros)):
-					self._oleada.meteoros[i].avanzar()
+				for i in range(len(self._oleada.getListaMeteoros())):
+					self._oleada.getListaMeteoros()[i].avanzar()
 				self.colision()
 			if(len(Nave.disparos) > 0):
 				vel_d = Nave.disparos[0].getVelocidad()
@@ -143,14 +144,14 @@ class Juego:
 					for i in range(len(Nave.disparos)):
 						Nave.disparos[i].avanzar()
 					self.colision()
-			Nave.reducir_vu()
+			Nave.reducirVidaUtil()
 			if(self._personaje.getVida() == 0):
 				return 0
 		else:
 			if(self._personaje.getVida() == 0):
 				return 0
 			opcion = 4
-			Mejora.BorrarMejoras(self._personaje)
+			Mejora.borrarMejoras(self._personaje)
 			print(Mensajes.mensajes.get("wave completed"))
 			#self._personaje = Mejora.ENSAYO(self._personaje)
 			while(opcion != "1" and opcion != "2" and opcion != "3"):
@@ -162,7 +163,7 @@ class Juego:
 					self._personaje.setPosicionX(int(Opciones.resx/2))
 					self._personaje.setPosicionY(int(Opciones.resy/2))
 					self._oleada.setNumOleada(self._oleada.getNumOleada()+1)
-					self._oleada.crearMeteoritos()
+					self._oleada.crearOleada()
 					Mejora._lista_mejoras = []
 					self._oleada.setCantidadDeTurnos(0)
 				elif(opcion == "3"):
@@ -172,7 +173,7 @@ class Juego:
 	def graficar(self):
 		print(Mensajes.mensajes.get("data"))
 		print(Mensajes.mensajes.get("wave number"),self._oleada.getNumOleada(),Mensajes.mensajes.get("lifes"),self._personaje.getVida(),
-			Mensajes.mensajes.get("score"),Oleada.score,Mensajes.mensajes.get("meteorites remaining"),len(self._oleada.meteoros),
+			Mensajes.mensajes.get("score"),Oleada.score,Mensajes.mensajes.get("meteorites remaining"),len(self._oleada.getListaMeteoros()),
 		    Mensajes.mensajes.get("game paused"),not(self.getPause()),Mensajes.mensajes.get("number of shift"),self._oleada.getCantidadDeTurnos(),
 		    Mensajes.mensajes.get("damage") ,self._personaje.getDamage(),Mensajes.mensajes.get("ship speed") , self._personaje.getVelocidad(),
 			Mensajes.mensajes.get("ship position"),"(", self._personaje.getPosicionX(),",", self._personaje.getPosicionY(),")",Mensajes.mensajes.get("number shots"), self._personaje.getNumDisparos(),
@@ -180,10 +181,10 @@ class Juego:
 		for i in range(Opciones.resx):
 			print("-",end="")
 		print("\n")
-		matriz = self.imprimirRadios(self._oleada.meteoros, Nave.disparos)
+		matriz = self.imprimirRadios(self._oleada.getListaMeteoros(), Nave.disparos)
 		matriz[self._personaje.getPosicionX()][self._personaje.getPosicionY()] = self._personaje.getImagen()
-		for i in range( len(self._oleada.meteoros) ):
-			matriz[self._oleada.meteoros[i].getPosicionX()][self._oleada.meteoros[i].getPosicionY()] = "O"
+		for i in range( len(self._oleada.getListaMeteoros()) ):
+			matriz[self._oleada.getListaMeteoros()[i].getPosicionX()][self._oleada.getListaMeteoros()[i].getPosicionY()] = "O"
 		for	i in range( len(Nave.disparos) ):
 			matriz[Nave.disparos[i].getPosicionX()][Nave.disparos[i].getPosicionY()] = "*"
 			
@@ -284,7 +285,7 @@ class Juego:
 		return matriz
 	
 	@staticmethod
-	def AgregarPuntaje():
+	def agregarPuntaje():
 		puntajes = open("MejoresPuntajes.txt", "a")
 		puntajes2 = open("MejoresPuntajes.txt", "r")
 		listaPuntajes = puntajes2.readlines()
@@ -300,7 +301,7 @@ class Juego:
 
 
 
-	def MejoresPuntajes():
+	def mejoresPuntajes():
 
 		puntajes = open("MejoresPuntajes.txt", "r")
 		lista_pun = puntajes.readlines()
@@ -335,7 +336,7 @@ class Juego:
 		print(texto)
 		puntajesTop.close()
 
-	def RandomWave(self):
+	def randomWave(self):
 		self._oleada = Oleada(random.randrange(0, 10), random.randrange(0, 10),
                               random.randrange(0, 10))
 		self._personaje = Nave(random.randrange(0, Opciones.resx),

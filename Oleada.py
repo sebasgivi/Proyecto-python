@@ -1,19 +1,19 @@
 from Meteoro import Meteoro
 class Oleada:
-	meteoros = []
+	
 	score = 0
 	def __init__(self, meteoros_destruidos = 0,
-				 num_oleada = 1, cantidad_de_turnos = 0):
+				 num_oleada = 1, cantidad_de_turnos = 0,meteoros = []):
 		self._meteoros_destruidos = meteoros_destruidos
 		self._num_oleada = num_oleada
 		self._cantidad_de_turnos = cantidad_de_turnos
+		self._lista_meteoros = meteoros
 
-
-	def crearMeteoritos(self):
+	def crearOleada(self):
 		for i in range(self.getNumOleada() * 1):
 			meteoro = Meteoro()
 			meteoro.setVelocidad(self.getNumOleada()/2 + 1)
-			Oleada.meteoros.append(meteoro)  
+			self.getListaMeteoros().append(meteoro)  
 
 	def getNumOleada(self):
 		return self._num_oleada
@@ -32,3 +32,9 @@ class Oleada:
 
 	def setCantidadDeTurnos(self, cantidad_de_turnos):
 		self._cantidad_de_turnos = cantidad_de_turnos
+
+	def getListaMeteoros(self):
+		return self._lista_meteoros
+
+	def setListaMeteoros(self, lista_meteoros):
+		self._lista_meteoros = lista_meteoros

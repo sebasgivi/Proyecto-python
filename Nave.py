@@ -56,7 +56,7 @@ class Nave(AtributosBasicos):
 				self._imagen = self._imagenes[indice - 1]
 
 	@staticmethod
-	def reducir_vu():
+	def reducirVidaUtil():
 		listad = []
 		for i in range(len(Nave.disparos)):
 			Nave.disparos[i].setVidaUtilDisparo(Nave.disparos[i].getVidaUtilDisparo() - 1)

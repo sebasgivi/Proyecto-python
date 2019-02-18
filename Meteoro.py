@@ -7,6 +7,7 @@ class Meteoro(AtributosBasicos):
 		arreglo = self.generarPosicion()
 		super(Meteoro, self).__init__(arreglo[0], arreglo[1], _rango_colision, 
                                       _rango_colision, vel, arreglo[2], "O", 1)
+		
 
 	def generarPosicion(self):
 		eje = random.randrange(0, 2)

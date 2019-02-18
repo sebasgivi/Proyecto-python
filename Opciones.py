@@ -3,27 +3,27 @@ class Opciones:
 
 	resx = 100
 	resy = 15
-	_controlList = ["w", "a", "d", "f"]
+	_control_list = ["w", "a", "d", "f"]
 
 	def changeControls(move, left, right, shot):
-		Opciones._controlList = []
-		Opciones._controlList.append(move)
-		Opciones._controlList.append(left)
+		Opciones._control_list = []
+		Opciones._control_list.append(move)
+		Opciones._control_list.append(left)
 		cancelar_cambio = 0
 		if (move == left):
 			cancelar_cambio = 1 
-		Opciones._controlList.append(right)
+		Opciones._control_list.append(right)
 		if (move == right) or (left == right):
 			cancelar_cambio = 1
-		Opciones._controlList.append(shot)
+		Opciones._control_list.append(shot)
 		if (move == shot) or (left == shot) or (right == shot):
 			cancelar_cambio = 1
 		if (cancelar_cambio == 1):
 
-			Opciones._controlList = ["w", "a", "d", "f"]
+			Opciones._control_list = ["w", "a", "d", "f"]
 			print(Mensajes.mensajes.get("unrealized changes"))
 	def getControlList():
-		return Opciones._controlList
+		return Opciones._control_list
 
 	def changeResolution(resx, resy):
 		Opciones.resx = int(resx)
