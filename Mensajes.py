@@ -31,9 +31,10 @@ class Mensajes:
 				|---------------------------------------------------------------------------------|
 				1)Jugar
 				2)Instrucciones
-				3)Puntajes
-				4)Opciones
-				5)Salir""",
+				3)Historial jugadores
+				4)Puntajes
+				5)Opciones
+				6)Salir""",
 				"option menu":"Ingrese una opcion: ",
 				"instruction":"INSTRUCCIONES",
 				"top scores": "TOP PUNTAJES:",
@@ -85,7 +86,7 @@ class Mensajes:
                 "temporary life bullet":"Mejora temporal de vida de la bala",
                 "temporary ship speed":"Mejora temporal de velocidad de la nave",
                 "temporary damage":"mejora temporal del damage de la bala",
-                "put me 5":"JUEGO tERMINADO; Pongame 5.0"}
+                "put me 5":"JUEGO tERMINADO; Pongame 5.0","register":"Historial de jugadores"}
 
 	ingles = { "menu":
 """				|---------------------------------------------------------------------------------|
@@ -114,9 +115,10 @@ class Mensajes:
 				|---------------------------------------------------------------------------------|
 				1)Play
 				2)Instructions
-				3)Scores
-				4)Options
-				5)Exit""",
+				3)Player history
+				4)Scores
+				5)Options
+				6)Exit""",
 				"option menu":"Enter  option: ",
 				"instructions":"INSTRUCTIONS",
 				"top scores": "TOP SCORES:",
@@ -168,4 +170,4 @@ class Mensajes:
                 "temporary life bullet":"temporary improvement of Life Bullet",
                 "temporary ship speed":"temporary improvement of Speed",
                 "temporary damage":"temporary improvement of Damage",
-                "put me 5":"END GAME; Rate me 5.0"}
+                "put me 5":"END GAME; Rate me 5.0", "register":"Player history"}

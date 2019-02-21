@@ -337,6 +337,32 @@ class Juego:
 		print(texto)
 		puntajesTop.close()
 
+	def historialJugadores():
+		historial = open("MejoresPuntajes.txt", "r")
+		lista_his = historial.readlines()
+		imprimir_historial = open("historial.txt", "w")
+		lista_historial = []
+		n = int(float(len(lista_his)/2))
+		y = 0
+		x = 0
+		while y<n:
+			buscar = lista_his[x].find("\n")
+			tupla = ((lista_his[x][:buscar]),(int(lista_his[x+1])))
+			lista_historial.append(tupla)
+			listaBorrar = list(tupla)
+			listaBorrar.clear()
+			x = x + 2
+			y = y + 1
+		lista_historial = [str(i) for i in lista_historial]
+		for x in range(len(lista_historial)):
+			imprimir_historial.write(lista_historial[x]+"\n")
+		historial.close()
+		imprimir_historial.close()
+		imprimir_historial = open("historial.txt", "r")
+		texto = imprimir_historial.read()
+		print(texto)
+		imprimir_historial.close()
+
 	def randomWave(self):
 		self._oleada = Oleada(random.randrange(0, 10), random.randrange(0, 10),
                               random.randrange(0, 10))

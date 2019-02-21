@@ -18,9 +18,12 @@ class Main():
 			elif(opcion == "2"):
 				print(Mensajes.mensajes.get("instructions"))
 			elif(opcion == "3"):
+				print(Mensajes.mensajes.get("register"))
+				Juego.historialJugadores()
+			elif(opcion == "4"):
 				print(Mensajes.mensajes.get("top scores"))
 				Juego.mejoresPuntajes()
-			elif(opcion == "4"):
+			elif(opcion == "5"):
 				option = input(Mensajes.mensajes.get("options"))
 				if(option == "1"):
 					resx = input(Mensajes.mensajes.get("resx"))
@@ -34,7 +37,7 @@ class Main():
 					Opciones.changeControls(move, left, right, shot)
 				elif(option == "3"):
 					Opciones.changeLanguage()
-			elif(opcion == "5"):
+			elif(opcion == "6"):
 				print(Mensajes.mensajes.get("put me 5"))
 				break
 			juego = 0
