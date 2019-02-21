@@ -3,7 +3,7 @@ class Mensajes:
 	mensajes= {}
 
 	eleccion_idioma = {"language option":"IDIOMA:\n1. ESPAÑOL\n2. INGLES\n"
-					   "Por favor seleccione un idioma: "}
+					   "Por favor seleccione un idioma: ","invalid option":"Opción invalida"}
 	español = { "menu":
 """             |---------------------------------------------------------------------------------|
 				|                                                                                 |

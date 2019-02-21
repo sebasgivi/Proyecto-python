@@ -4,6 +4,7 @@ from Tienda import Tienda
 from Opciones import Opciones
 from Mensajes import Mensajes
 from Mejora import Mejora
+from Disparo import Disparo
 import random
 
 class Juego:
@@ -42,8 +43,8 @@ class Juego:
 							self.colision()
 						self.refrescar()
 					elif(opcion == control_list[3]):
-						if(len(Nave.disparos) < self._personaje.getNumDisparos()):
-							self._personaje.crearDisparo()
+						if(len(Disparo.disparos) < self._personaje.getNumDisparos()):
+							Disparo.crearDisparo(self._personaje.getPosicionX(),self._personaje.getPosicionY(),self._personaje.getDireccion(),self._personaje.getVidaUtilDisparo(),self._personaje.getDamage())
 							self.refrescar()
 					elif(opcion == "p"):
 						self.setPause()
@@ -62,7 +63,7 @@ class Juego:
 		lista = []
 		self._personaje = Nave()
 		self._oleada.setListaMeteoros(lista) 
-		Nave.disparos = []
+		Disparo.disparos = []
 
 
 
@@ -88,11 +89,11 @@ class Juego:
 					   self._oleada.getListaMeteoros()[j].getVida() <= 0):
 						pila_m.append(j)
 
-		for i in range(len(Nave.disparos)):
+		for i in range(len(Disparo.disparos)):
 			for j in range(len(self._oleada.getListaMeteoros())):
-				if(self.verificar(Nave.disparos[i], self._oleada.getListaMeteoros()[j]) == True):
+				if(self.verificar(Disparo.disparos[i], self._oleada.getListaMeteoros()[j]) == True):
 					self._oleada.getListaMeteoros()[j].setVida(self._oleada.getListaMeteoros()[j].getVida()
-											   - Nave.disparos[i].getDamage())
+											   - Disparo.disparos[i].getDamage())
 					if(not i in pila_d):
 						pila_d.append(i)
 					if(not j in pila_m and
@@ -109,7 +110,7 @@ class Juego:
 		while(len(pila_m) > 0):
 			self._oleada.getListaMeteoros().remove(self._oleada.getListaMeteoros()[pila_m.pop()])
 		while(len(pila_d) > 0):
-			Nave.disparos.remove(Nave.disparos[pila_d.pop()])
+			Disparo.disparos.remove(Disparo.disparos[pila_d.pop()])
 			Oleada.score+=10
 		for i in range(len(Mejora._lista_mejoras)):
 			if(self.verificar(self._personaje, Mejora._lista_mejoras[i])):
@@ -138,13 +139,13 @@ class Juego:
 				for i in range(len(self._oleada.getListaMeteoros())):
 					self._oleada.getListaMeteoros()[i].avanzar()
 				self.colision()
-			if(len(Nave.disparos) > 0):
-				vel_d = Nave.disparos[0].getVelocidad()
+			if(len(Disparo.disparos) > 0):
+				vel_d = Disparo.disparos[0].getVelocidad()
 				for j in range(vel_d):
-					for i in range(len(Nave.disparos)):
-						Nave.disparos[i].avanzar()
+					for i in range(len(Disparo.disparos)):
+						Disparo.disparos[i].avanzar()
 					self.colision()
-			Nave.reducirVidaUtil()
+			Disparo.reducirVidaUtil()
 			if(self._personaje.getVida() == 0):
 				return 0
 		else:
@@ -157,7 +158,7 @@ class Juego:
 			while(opcion != "1" and opcion != "2" and opcion != "3"):
 				opcion = input()
 				if(opcion == "1" or opcion == "2"):
-					Nave.disparos = []
+					Disparo.disparos = []
 					if(opcion=="1"):
 						self._personaje = Tienda.comprar(self._personaje)
 					self._personaje.setPosicionX(int(Opciones.resx/2))
@@ -181,12 +182,12 @@ class Juego:
 		for i in range(Opciones.resx):
 			print("-",end="")
 		print("\n")
-		matriz = self.imprimirRadios(self._oleada.getListaMeteoros(), Nave.disparos)
+		matriz = self.imprimirRadios(self._oleada.getListaMeteoros(), Disparo.disparos)
 		matriz[self._personaje.getPosicionX()][self._personaje.getPosicionY()] = self._personaje.getImagen()
 		for i in range( len(self._oleada.getListaMeteoros()) ):
 			matriz[self._oleada.getListaMeteoros()[i].getPosicionX()][self._oleada.getListaMeteoros()[i].getPosicionY()] = "O"
-		for	i in range( len(Nave.disparos) ):
-			matriz[Nave.disparos[i].getPosicionX()][Nave.disparos[i].getPosicionY()] = "*"
+		for	i in range( len(Disparo.disparos) ):
+			matriz[Disparo.disparos[i].getPosicionX()][Disparo.disparos[i].getPosicionY()] = "*"
 			
 		for i in range(Opciones.resy + 1):
 			print("|",end="")
