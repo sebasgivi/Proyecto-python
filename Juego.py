@@ -68,7 +68,7 @@ class Juego:
 			print(Mensajes.mensajes.get("enter your name"),"Score ",Oleada.score)
 			Juego.agregarPuntaje()
 		lista = []
-		self._personaje = Nave()
+		self._personaje = Nave(self)
 		self._oleada.setListaMeteoros(lista) 
 		
 
