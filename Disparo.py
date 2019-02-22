@@ -1,19 +1,26 @@
 from AtributosBasicos import AtributosBasicos
 
 class Disparo(AtributosBasicos):
-	disparos = []
+	
 
-	def __init__(self,posicionx,posiciony,direccion,vida_util_disparo,damage):
+	def __init__(self,posicionx,posiciony,direccion,vida_util_disparo,damage,nave):
 		super(Disparo, self).__init__(posicionx + self.direccionDisparo(direccion)[0], 
                                       posiciony + self.direccionDisparo(direccion)[1],
                                       1, 1, 2, direccion, "*", damage)
 		self._vida_util_disparo=vida_util_disparo
+		self._nave = nave
 	
 	def getVidaUtilDisparo(self):
 		return self._vida_util_disparo
 
 	def setVidaUtilDisparo(self,vida_util_disparo): 
 		self._vida_util_disparo = vida_util_disparo
+
+	def getNave(self):
+		return self._nave
+
+	def setNave(self,nave):
+		self.nave = nave
 
 	def direccionDisparo(self,direccion):
 		arreglo = []
@@ -32,18 +39,18 @@ class Disparo(AtributosBasicos):
 		return arreglo
 
 	staticmethod	
-	def crearDisparo(posicionX, posicionY, direccion, vidautil, damage):
+	def crearDisparo(posicionX, posicionY, direccion, vidautil, damage,nave):
 		disparo = Disparo(posicionX, posicionY,
                           direccion, vidautil,
-                          damage)
-		Disparo.disparos.append(disparo)
+                          damage,nave)
+		nave.getListaDisparos().append(disparo)
 
 	staticmethod
-	def reducirVidaUtil():
+	def reducirVidaUtil(personaje):
 		listad = []
-		for i in range(len(Disparo.disparos)):
-			Disparo.disparos[i].setVidaUtilDisparo(Disparo.disparos[i].getVidaUtilDisparo() - 1)
-			if(Disparo.disparos[i].getVidaUtilDisparo() <= 0):
+		for i in range(len(personaje.getListaDisparos())):
+			personaje.getListaDisparos()[i].setVidaUtilDisparo(personaje.getListaDisparos()[i].getVidaUtilDisparo() - 1)
+			if(personaje.getListaDisparos()[i].getVidaUtilDisparo() <= 0):
 				listad.append(i)
 		while(len(listad) != 0):
-			Disparo.disparos.remove(Disparo.disparos[listad.pop()])
+			personaje.getListaDisparos().remove(personaje.getListaDisparos()[listad.pop()])

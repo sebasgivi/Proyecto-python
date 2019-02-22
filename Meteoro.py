@@ -3,10 +3,11 @@ from Opciones import Opciones
 import random
 class Meteoro(AtributosBasicos):
 
-	def __init__(self, _rango_colision = 1, vel = 1, imagen = "O", damage = 1):
+	def __init__(self, oleada,_rango_colision = 1, vel = 1, imagen = "O", damage = 1):
 		arreglo = self.generarPosicion()
 		super(Meteoro, self).__init__(arreglo[0], arreglo[1], _rango_colision, 
                                       _rango_colision, vel, arreglo[2], "O", 1)
+		self._oleada = oleada
 		
 
 	def generarPosicion(self):
@@ -29,6 +30,11 @@ class Meteoro(AtributosBasicos):
 			else:
 				arreglo = [0, especificoy, 0]
 		return arreglo
+
+	@staticmethod 
+	def crearMeteoros(oleada):
+		meteoro = Meteoro(oleada)
+		return meteoro
 
 	def setVida(self, vida):
 		self._vida = vida 

@@ -1,49 +1,53 @@
 from AtributosBasicos import AtributosBasicos
 from Mensajes import Mensajes
+from Nave import Nave 
 import random
 class Mejora(AtributosBasicos):
 	_lista_mejoras = []
-	_mejoras_activas = []
+	
 
-	def __init__(self, posicion_x, posicion_y):
+	def __init__(self, posicion_x, posicion_y,nave):
 		super().__init__(posicion_x, posicion_y, 1, 1, 0, 0, "+", 0)
 		self._cualidad = random.randrange(0,4)
+		self._nave = nave
 		Mejora._lista_mejoras.append(self)
 
-	def calcularMejora(self, nave):
+	def calcularMejora(self):
 		opcion = self._cualidad
 		if(opcion == 0):
-			nave.setVida(nave.getVida() + 1)
-			Mejora._mejoras_activas.append(self)
+			self._nave.setVida(self._nave.getVida() + 1)
+			self._nave.getMejorasActivas().append(self)
 			print(Mensajes.mensajes.get("temporary life"))
 		elif(opcion == 1):
-			nave.setNumDisparos(nave.getNumDisparos() + 1)
-			Mejora._mejoras_activas.append(self)
+			self._nave.setNumDisparos(self._nave.getNumDisparos() + 1)
+			self._nave.getMejorasActivas().append(self)
 			print(Mensajes.mensajes.get("temporary shots"))
 		elif(opcion == 2):
-			nave.setVidaUtilDisparo(nave.getVidaUtilDisparo() + 1)
-			Mejora._mejoras_activas.append(self)
+			self._nave.setVidaUtilDisparo(self._nave.getVidaUtilDisparo() + 1)
+			self._nave.getMejorasActivas().append(self)
 			print(Mensajes.mensajes.get("temporary life bullet"))
 		elif(opcion == 3):
-			nave.setVelocidad(nave.getVelocidad() + 1)
-			Mejora._mejoras_activas.append(self)
+			self._nave.setVelocidad(self._nave.getVelocidad() + 1)
+			self._nave.getMejorasActivas().append(self)
 			print(Mensajes.mensajes.get("temporary ship speed"))
 		elif(opcion == 4):
-			nave.setDamage(nave.getDamage() + 1)
-			Mejora._mejoras_activas.append(self)
+			self._nave.setDamage(self._nave.getDamage() + 1)
+			self._nave.getMejorasActivas().append(self)
 			print(Mensajes.mensajes.get("temporary damage"))
-		return nave
+		return self._nave
 
-	def borrarMejoras(nave):
-		while(len(Mejora._mejoras_activas) > 0):
-			opcion = Mejora._mejoras_activas.pop()._cualidad
+	def borrarMejoras(self):
+		while(len(self._nave._mejoras_activas) > 0):
+			opcion = self._nave._mejoras_activas.pop()._cualidad
 			if(opcion == 0):
-				nave.setVida(nave.getVida() - 1)
+				self._nave.setVida(self._nave.getVida() - 1)
 			elif(opcion == 1):
-				nave.setNumDisparos(nave.getNumDisparos() - 1)
+				self._nave.setNumDisparos(self._nave.getNumDisparos() - 1)
 			elif(opcion == 2):
-				nave.setVidaUtilDisparo(nave.getVidaUtilDisparo() - 1)
+				self._nave.setVidaUtilDisparo(self._nave.getVidaUtilDisparo() - 1)
 			elif(opcion == 3):
-				nave.setVelocidad(nave.getVelocidad() - 1)
+				self._nave.setVelocidad(self._nave.getVelocidad() - 1)
 			elif(opcion == 4):
-				nave.setDamage(nave.getDamage() - 1)
+				self._nave.setDamage(self._nave.getDamage() - 1)
+
+	

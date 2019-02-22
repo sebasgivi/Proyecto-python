@@ -36,7 +36,7 @@ class Mensajes:
 				5)Opciones
 				6)Salir""",
 				"option menu":"Ingrese una opcion: ",
-				"instruction":"INSTRUCCIONES",
+				"instructions":"INSTRUCCIONES",
 				"top scores": "TOP PUNTAJES:",
 				"options" : "1) Cambiar Resolucion del Juego\n2) Cambiar Controles\n3) Cambiar Idioma\n",
 				"end game":"Fin del Juego",
