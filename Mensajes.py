@@ -36,7 +36,18 @@ class Mensajes:
 				5)Opciones
 				6)Salir""",
 				"option menu":"Ingrese una opcion: ",
-				"instructions":"INSTRUCCIONES",
+				"instructions":
+				"""INSTRUCCIONES:
+				Eres una nave simbolizada por "^", actualmente te encuentras perdido en el espacio y tienes que resistir el mayor tiempo
+				posible hasta que tus amigos lleguen para rescatarte: utiliza "w" para avanzar hacia adelante y las teclas "A"
+				y "D" para girar 90° a la izquierda y a la derecha respectivamente, Utiliza P para poner en pausa y nuevamente P para
+				continuar jugando (controles asignados por defecto), al finalizar cada oleada puedes acceder a la tienda pero mucho
+				cuidado, pues tu dinero es el puntaje, utilizalo sabiamente, por ultimo dispara con "F"(control por defecto) y obtendras
+				puntos con cada meteorito "O" que derrotes; durante cada oleada iran apareciendo mejoras aleatorias temporales "+", pero
+				no te conformes con estas, pues cada nivel sera mas dificil.
+
+				Desafia a tus amigos y mira quien obtendra un puntaje capaz de aparecer en el top 5.
+				""",
 				"top scores": "TOP PUNTAJES:",
 				"options" : "1) Cambiar Resolucion del Juego\n2) Cambiar Controles\n3) Cambiar Idioma\n",
 				"end game":"Fin del Juego",
@@ -120,7 +131,18 @@ class Mensajes:
 				5)Options
 				6)Exit""",
 				"option menu":"Enter  option: ",
-				"instructions":"INSTRUCTIONS",
+				"instructions":
+				"""INSTRUCTIONS:
+				You are a ship symbolized by "^", you are currently lost in space and have to resist the longest time
+				possible until your friends come to rescue you: use "w" to move forward and "A" keys
+				and "D" to rotate 90 ° to the left and to the right respectively, Use P to pause and again P to
+				continue playing (controls assigned by default), at the end of each wave you can access the store but much
+				be careful, because your money is the score, use wisely, finally shoot with "F" (default control) and you will get
+				points with each "O" meteor that you defeat; During each wave, temporary "+" random improvements will appear, but
+				Do not settle for these, because each level will be more difficult.
+
+				Challenge your friends and see who will get a score capable of appearing in the Top 5.
+				""",
 				"top scores": "TOP SCORES:",
 				"options" : "1) Change Game Resolution\n2) Change Game Controls\n3) Change Game Language\n",
 				"end game":"Game over",
