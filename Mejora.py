@@ -8,12 +8,12 @@ class Mejora(AtributosBasicos):
 
 	def __init__(self, posicion_x, posicion_y,nave):
 		super().__init__(posicion_x, posicion_y, 1, 1, 0, 0, "+", 0)
-		self._cualidad = random.randrange(0,4)
+		self._tipo_mejora = random.randrange(0,4)
 		self._nave = nave
 		Mejora._lista_mejoras.append(self)
 
 	def calcularMejora(self):
-		opcion = self._cualidad
+		opcion = self._tipo_mejora
 		if(opcion == 0):
 			self._nave.setVida(self._nave.getVida() + 1)
 			self._nave.getMejorasActivas().append(self)
@@ -38,7 +38,7 @@ class Mejora(AtributosBasicos):
 
 	def borrarMejoras(self):
 		while(len(self._nave._mejoras_activas) > 0):
-			opcion = self._nave._mejoras_activas.pop()._cualidad
+			opcion = self._nave._mejoras_activas.pop()._tipo_mejora
 			if(opcion == 0):
 				self._nave.setVida(self._nave.getVida() - 1)
 			elif(opcion == 1):

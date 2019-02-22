@@ -45,7 +45,7 @@ class Nave(AtributosBasicos):
 	def setDireccion(self, rotacion):
 		arreglo = [0, 90, 180, 270]
 		indice = arreglo.index(self._direccion)
-		if(rotacion == "a"):
+		if(rotacion == Opciones._control_list[1]):
 			if(indice == 3):
 				self._direccion = arreglo[0]
 				self._imagen = self._imagenes[0]
