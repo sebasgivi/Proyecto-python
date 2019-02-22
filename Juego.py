@@ -197,7 +197,7 @@ class Juego:
 		for i in range(Opciones.resx):
 			print("-",end="")
 		print("\n")
-		matriz = self.imprimirRadios(self._oleada.getListaMeteoros(), 
+		matriz = self.imprimirHitbox(self._oleada.getListaMeteoros(), 
 		self._personaje.getListaDisparos())
 		matriz[self._personaje.getPosicionX()][self._personaje.getPosicionY()] = self._personaje.getImagen()
 		for i in range( len(self._oleada.getListaMeteoros()) ):
@@ -220,7 +220,7 @@ class Juego:
 		if (not(self.getPause()) == True):
 			print(Mensajes.mensajes.get("paused"))
 		
-	def imprimirRadios(self,listam,listad):
+	def imprimirHitbox(self,listam,listad):
 		matriz = []
 		for i in range(Opciones.resx + 1):
 			matriz.append([0] * (Opciones.resy + 1))
