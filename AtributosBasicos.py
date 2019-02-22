@@ -87,23 +87,23 @@ class AtributosBasicos:
 		posx_aux = self.getPosicionX() - self._medida_hitbox
 		posy_aux = self.getPosicionY() - self._medida_hitbox
 		for i in range(2 * self._medida_hitbox):
-			if(posx_aux < Opciones.resx and posy_aux < Opciones.resy and posx_aux > 0
-               and posy_aux > 0):
+			if(posx_aux < Opciones.resx and posy_aux < Opciones.resy 
+			   and posx_aux > 0 and posy_aux > 0):
 				hit_box.append(posy_aux*Opciones.resx + posx_aux)
 			posx_aux+=1
 		for i in range(2 * self._medida_hitbox):
-			if(posx_aux < Opciones.resx and posy_aux < Opciones.resy and posx_aux > 0
-               and posy_aux > 0):
+			if(posx_aux < Opciones.resx and posy_aux < Opciones.resy 
+			   and posx_aux > 0 and posy_aux > 0):
 				hit_box.append(posy_aux*Opciones.resx + posx_aux)
 			posy_aux +=1
 		for i in range(2 * self._medida_hitbox):
-			if(posx_aux < Opciones.resx and posy_aux < Opciones.resy and posx_aux > 0
-               and posy_aux > 0):
+			if(posx_aux < Opciones.resx and posy_aux < Opciones.resy 
+			   and posx_aux > 0 and posy_aux > 0):
 				hit_box.append(posy_aux*Opciones.resx + posx_aux)
 			posx_aux -=1
 		for i in range(2 * self._medida_hitbox):
-			if(posx_aux < Opciones.resx and posy_aux < Opciones.resy and posx_aux > 0
-               and posy_aux > 0):
+			if(posx_aux < Opciones.resx and posy_aux < Opciones.resy 
+			   and posx_aux > 0 and posy_aux > 0):
 				hit_box.append(posy_aux*Opciones.resx + posx_aux)
 			posy_aux -=1
 

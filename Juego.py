@@ -9,11 +9,14 @@ import random
 
 class Juego:
 	
-
-	def __init__(self, pause = True, oleada = Oleada(), personaje = Nave()):
+		#Atributos de instancia
+		#self._pause
+		#self._oleada
+		#self._personaje
+	def __init__(self, pause = True):
 		self._pause = pause
-		self._oleada = oleada
-		self._personaje = personaje
+		self._oleada = Oleada(self)
+		self._personaje = Nave(self)
 
 	def setPause(self):
 		if(self.getPause() == True):
@@ -22,11 +25,11 @@ class Juego:
 			self._pause = True
 
 	def jugar(self):
-		self._oleada = Oleada()
+		self._oleada = Oleada(self)
 		if(input(Mensajes.mensajes.get("random wave")) == "1"):
 			self.randomWave()
 		self._oleada.crearOleada()
-		self._personaje = Nave()
+		self._personaje = Nave(self)
 		control_list = Opciones.getControlList()
 
 		while((self._personaje.gameOver()) == False):
@@ -43,9 +46,12 @@ class Juego:
 						self.refrescar()
 					elif(opcion == control_list[3]):
 						if(len(self._personaje.getListaDisparos()) < self._personaje.getNumDisparos()):
-							Disparo.crearDisparo(self._personaje.getPosicionX(),self._personaje.getPosicionY(),
-						    					 self._personaje.getDireccion(),self._personaje.getVidaUtilDisparo(),
-						    					 self._personaje.getDamage(),self._personaje)
+							Disparo.crearDisparo(self._personaje.getPosicionX(),
+								                 self._personaje.getPosicionY(),
+						    					 self._personaje.getDireccion(),
+						    					 self._personaje.getVidaUtilDisparo(),
+						    					 self._personaje.getDamage(),
+						    					 self._personaje)
 							self.refrescar()
 					elif(opcion == "p"):
 						self.setPause()
@@ -78,7 +84,8 @@ class Juego:
 		pila_mejoras = []
 		for i in range(len(self._oleada.getListaMeteoros())):
 			for j in range(i + 1, len(self._oleada.getListaMeteoros())):
-				if(self.verificar(self._oleada.getListaMeteoros()[i], self._oleada.getListaMeteoros()[j]) == True):
+				if(self.verificar(self._oleada.getListaMeteoros()[i],
+					self._oleada.getListaMeteoros()[j]) == True):
 					self._oleada.getListaMeteoros()[i].setVida(self._oleada.getListaMeteoros()[i].getVida()
 											   - self._oleada.getListaMeteoros()[j].getDamage())
 					self._oleada.getListaMeteoros()[j].setVida(self._oleada.getListaMeteoros()[j].getVida()
@@ -92,7 +99,8 @@ class Juego:
 
 		for i in range(len(self._personaje.getListaDisparos())):
 			for j in range(len(self._oleada.getListaMeteoros())):
-				if(self.verificar(self._personaje.getListaDisparos()[i], self._oleada.getListaMeteoros()[j]) == True):
+				if(self.verificar(self._personaje.getListaDisparos()[i], 
+					self._oleada.getListaMeteoros()[j]) == True):
 					self._oleada.getListaMeteoros()[j].setVida(self._oleada.getListaMeteoros()[j].getVida()
 											   - self._personaje.getListaDisparos()[i].getDamage())
 					if(not i in pila_d):
@@ -103,7 +111,8 @@ class Juego:
 
 		for i in range(len(self._oleada.getListaMeteoros())):
 			if(self.verificar(self._personaje, self._oleada.getListaMeteoros()[i])):
-				self._personaje.setVida(self._personaje.getVida() - self._oleada.getListaMeteoros()[i].getDamage())
+				self._personaje.setVida(self._personaje.getVida() 
+				- self._oleada.getListaMeteoros()[i].getDamage())
 				if(not i in pila_m):
 					pila_m.append(i)
 					self._oleada.setMeteorosDestruidos(self._oleada.getMeteorosDestruidos() + 1)
@@ -153,7 +162,7 @@ class Juego:
 			if(self._personaje.getVida() == 0):
 				return 0
 			opcion = 4
-			Mejora.borrarMejoras()
+			Mejora.borrarMejoras(self._personaje)
 			print(Mensajes.mensajes.get("wave completed"))
 			while(opcion != "1" and opcion != "2" and opcion != "3"):
 				opcion = input()
@@ -173,16 +182,23 @@ class Juego:
 
 	def graficar(self):
 		print(Mensajes.mensajes.get("data"))
-		print(Mensajes.mensajes.get("wave number"),self._oleada.getNumOleada(),Mensajes.mensajes.get("lifes"),self._personaje.getVida(),
-			Mensajes.mensajes.get("score"),Oleada.score,Mensajes.mensajes.get("meteorites remaining"),len(self._oleada.getListaMeteoros()),
-		    Mensajes.mensajes.get("game paused"),not(self.getPause()),Mensajes.mensajes.get("number of shift"),self._oleada.getCantidadDeTurnos(),
-		    Mensajes.mensajes.get("damage") ,self._personaje.getDamage(),Mensajes.mensajes.get("ship speed") , self._personaje.getVelocidad(),
-			Mensajes.mensajes.get("ship position"),"(", self._personaje.getPosicionX(),",", self._personaje.getPosicionY(),")",Mensajes.mensajes.get("number shots"), self._personaje.getNumDisparos(),
+		print(Mensajes.mensajes.get("wave number"),self._oleada.getNumOleada(),
+			Mensajes.mensajes.get("lifes"),self._personaje.getVida(),
+			Mensajes.mensajes.get("score"),Oleada.score,
+			Mensajes.mensajes.get("meteorites remaining"),len(self._oleada.getListaMeteoros()),
+		    Mensajes.mensajes.get("game paused"),not(self.getPause()),
+		    Mensajes.mensajes.get("number of shift"),self._oleada.getCantidadDeTurnos(),
+		    Mensajes.mensajes.get("damage") ,self._personaje.getDamage(),
+		    Mensajes.mensajes.get("ship speed") , self._personaje.getVelocidad(),
+			Mensajes.mensajes.get("ship position"),
+			"(", self._personaje.getPosicionX(),",", self._personaje.getPosicionY(),")",
+			Mensajes.mensajes.get("number shots"), self._personaje.getNumDisparos(),
 			Mensajes.mensajes.get("shots life"), self._personaje.getVidaUtilDisparo())
 		for i in range(Opciones.resx):
 			print("-",end="")
 		print("\n")
-		matriz = self.imprimirRadios(self._oleada.getListaMeteoros(), self._personaje.getListaDisparos())
+		matriz = self.imprimirRadios(self._oleada.getListaMeteoros(), 
+		self._personaje.getListaDisparos())
 		matriz[self._personaje.getPosicionX()][self._personaje.getPosicionY()] = self._personaje.getImagen()
 		for i in range( len(self._oleada.getListaMeteoros()) ):
 			matriz[self._oleada.getListaMeteoros()[i].getPosicionX()][self._oleada.getListaMeteoros()[i].getPosicionY()] = "O"
@@ -212,75 +228,91 @@ class Juego:
 			posx_aux = listam[k].getPosicionX() - listam[k].getMedidaHitBox()
 			posy_aux = listam[k].getPosicionY() - listam[k].getMedidaHitBox()
 			for i in range(2 * listam[k].getMedidaHitBox()):
-				if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+				if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+					and posx_aux >= 0 and posx_aux <= Opciones.resx):
 					matriz[posx_aux][posy_aux] = "O"
 				posx_aux+=1
 			for i in range(2 * listam[k].getMedidaHitBox()):
-				if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+				if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+					and posx_aux >= 0 and posx_aux <= Opciones.resx):
 					matriz[posx_aux][posy_aux] = "O"
 				posy_aux+=1
 			for i in range(2 * listam[k].getMedidaHitBox()):
-				if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+				if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+					and posx_aux >= 0 and posx_aux <= Opciones.resx):
 					matriz[posx_aux][posy_aux] = "O"
 				posx_aux-=1
 			for i in range(2 * listam[k].getMedidaHitBox()):
-				if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+				if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+					and posx_aux >= 0 and posx_aux <= Opciones.resx):
 					matriz[posx_aux][posy_aux] = "O"
 				posy_aux-=1
 		for k in range(len(listad)):
 			posx_aux = listad[k].getPosicionX() - listad[k].getMedidaHitBox()
 			posy_aux = listad[k].getPosicionY() - listad[k].getMedidaHitBox()
 			for i in range(2 * listad[k].getMedidaHitBox()):
-				if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+				if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+					and posx_aux >= 0 and posx_aux <= Opciones.resx):
 					matriz[posx_aux][posy_aux] = "*"
 				posx_aux+=1
 			for i in range(2 * listad[k].getMedidaHitBox()):
-				if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+				if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+					and posx_aux >= 0 and posx_aux <= Opciones.resx):
 					matriz[posx_aux][posy_aux] = "*"
 				posy_aux+=1
 			for i in range(2 * listad[k].getMedidaHitBox()):
-				if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+				if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+					and posx_aux >= 0 and posx_aux <= Opciones.resx):
 					matriz[posx_aux][posy_aux] = "*"
 				posx_aux-=1
 			for i in range(2 * listad[k].getMedidaHitBox()):
-				if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+				if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+					and posx_aux >= 0 and posx_aux <= Opciones.resx):
 					matriz[posx_aux][posy_aux] = "*"
 				posy_aux-=1
 		for l in range(len(Mejora._lista_mejoras)):
 			posx_aux = Mejora._lista_mejoras[l].getPosicionX() - Mejora._lista_mejoras[l].getMedidaHitBox()
 			posy_aux = Mejora._lista_mejoras[l].getPosicionY() - Mejora._lista_mejoras[l].getMedidaHitBox()
 			for i in range(2 * Mejora._lista_mejoras[l].getMedidaHitBox()):
-				if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+				if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+					and posx_aux >= 0 and posx_aux <= Opciones.resx):
 					matriz[posx_aux][posy_aux] = "+"
 				posx_aux+=1
 			for i in range(2 * Mejora._lista_mejoras[l].getMedidaHitBox()):
-				if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+				if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+					and posx_aux >= 0 and posx_aux <= Opciones.resx):
 					matriz[posx_aux][posy_aux] = "+"
 				posy_aux+=1
 			for i in range(2 * Mejora._lista_mejoras[l].getMedidaHitBox()):
-				if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+				if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+					and posx_aux >= 0 and posx_aux <= Opciones.resx):
 					matriz[posx_aux][posy_aux] = "+"
 				posx_aux-=1
 			for i in range(2 * Mejora._lista_mejoras[l].getMedidaHitBox()):
-				if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+				if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+					and posx_aux >= 0 and posx_aux <= Opciones.resx):
 					matriz[posx_aux][posy_aux] = "+"
 				posy_aux-=1
 		posx_aux = self._personaje.getPosicionX() - self._personaje.getMedidaHitBox()
 		posy_aux = self._personaje.getPosicionY() - self._personaje.getMedidaHitBox()
 		for i in range(2 * self._personaje.getMedidaHitBox()):
-			if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+			if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+				and posx_aux >= 0 and posx_aux <= Opciones.resx):
 				matriz[posx_aux][posy_aux] = self._personaje.getImagen()
 			posx_aux+=1
 		for i in range(2 * self._personaje.getMedidaHitBox()):
-			if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+			if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+				and posx_aux >= 0 and posx_aux <= Opciones.resx):
 				matriz[posx_aux][posy_aux] = self._personaje.getImagen()
 			posy_aux+=1
 		for i in range(2 * self._personaje.getMedidaHitBox()):
-			if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+			if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+				and posx_aux >= 0 and posx_aux <= Opciones.resx):
 				matriz[posx_aux][posy_aux] = self._personaje.getImagen()
 			posx_aux-=1
 		for i in range(2 * self._personaje.getMedidaHitBox()):
-			if(posy_aux >= 0 and posy_aux <= Opciones.resy and posx_aux >= 0 and posx_aux <= Opciones.resx):
+			if(posy_aux >= 0 and posy_aux <= Opciones.resy 
+				and posx_aux >= 0 and posx_aux <= Opciones.resx):
 				matriz[posx_aux][posy_aux] = self._personaje.getImagen()
 			posy_aux-=1
 		return matriz

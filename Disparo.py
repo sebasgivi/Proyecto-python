@@ -2,7 +2,10 @@ from AtributosBasicos import AtributosBasicos
 
 class Disparo(AtributosBasicos):
 	
-
+		#Atributos de instancia
+		#Los de AtributosBasicos
+		#self._vida_util_disparo
+		#self._nave
 	def __init__(self,posicionx,posiciony,direccion,vida_util_disparo,damage,nave):
 		super(Disparo, self).__init__(posicionx + self.direccionDisparo(direccion)[0], 
                                       posiciony + self.direccionDisparo(direccion)[1],

@@ -5,7 +5,10 @@ import random
 class Mejora(AtributosBasicos):
 	_lista_mejoras = []
 	
-
+		#Atributos de instancia:
+		#Atributos de AtributosBasicos
+		#self._cualidad
+		#self._nave
 	def __init__(self, posicion_x, posicion_y,nave):
 		super().__init__(posicion_x, posicion_y, 1, 1, 0, 0, "+", 0)
 		self._cualidad = random.randrange(0,4)
@@ -36,18 +39,18 @@ class Mejora(AtributosBasicos):
 			print(Mensajes.mensajes.get("temporary damage"))
 		return self._nave
 
-	def borrarMejoras(self):
-		while(len(self._nave._mejoras_activas) > 0):
-			opcion = self._nave._mejoras_activas.pop()._cualidad
+	def borrarMejoras(_nave):
+		while(len(_nave._mejoras_activas) > 0):
+			opcion = _nave._mejoras_activas.pop()._cualidad
 			if(opcion == 0):
-				self._nave.setVida(self._nave.getVida() - 1)
+				_nave.setVida(_nave.getVida() - 1)
 			elif(opcion == 1):
-				self._nave.setNumDisparos(self._nave.getNumDisparos() - 1)
+				_nave.setNumDisparos(_nave.getNumDisparos() - 1)
 			elif(opcion == 2):
-				self._nave.setVidaUtilDisparo(self._nave.getVidaUtilDisparo() - 1)
+				_nave.setVidaUtilDisparo(_nave.getVidaUtilDisparo() - 1)
 			elif(opcion == 3):
-				self._nave.setVelocidad(self._nave.getVelocidad() - 1)
+				_nave.setVelocidad(_nave.getVelocidad() - 1)
 			elif(opcion == 4):
-				self._nave.setDamage(self._nave.getDamage() - 1)
+				_nave.setDamage(_nave.getDamage() - 1)
 
 	

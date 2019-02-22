@@ -2,7 +2,9 @@ from AtributosBasicos import AtributosBasicos
 from Opciones import Opciones
 import random
 class Meteoro(AtributosBasicos):
-
+	#Atributos de instancia:
+	#Los de AtributosBasicos
+	#self._oleada
 	def __init__(self, oleada,_rango_colision = 1, vel = 1, imagen = "O", damage = 1):
 		arreglo = self.generarPosicion()
 		super(Meteoro, self).__init__(arreglo[0], arreglo[1], _rango_colision, 

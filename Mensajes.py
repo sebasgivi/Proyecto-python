@@ -32,7 +32,7 @@ class Mensajes:
 				1)Jugar
 				2)Instrucciones
 				3)Historial jugadores
-				4)Puntajes
+				4)Top 5 Puntajes
 				5)Opciones
 				6)Salir""",
 				"option menu":"Ingrese una opcion: ",
@@ -80,7 +80,7 @@ class Mensajes:
                 "right":"Derecha ",
                 "shot":"Disparo ",
                 "unrealized changes": "Los cambios no se han guardado porque asignaste la misma letra en dos controles diferentes",
-                "random wave":"Desea iniciar una partida aleatoria?\n1)Si\n2)No\n ",
+                "random wave":"""1. Cargar datos ficticios \n2. Empezar partida nueva\n""",
                 "temporary life":"Mejora temporal de vida",
                 "temporary shots":"Mejora temporal de Disparos",
                 "temporary life bullet":"Mejora temporal de vida de la bala",
@@ -116,7 +116,7 @@ class Mensajes:
 				1)Play
 				2)Instructions
 				3)Player history
-				4)Scores
+				4)Top 5 Scores
 				5)Options
 				6)Exit""",
 				"option menu":"Enter  option: ",
@@ -164,7 +164,7 @@ class Mensajes:
                 "right":"Right ",
                 "shot":"Shot ",
                 "unrealized changes": "The changes havent been saved because you assigned the same letter in two different controls",
-                "random wave":"Do you want to start a random game?\n1)Yes\n2)No\n",
+                "random wave":"""1. load fictitious data \n2. New game\n""",
                 "temporary life":"temporary improvement of life",
                 "temporary shots":"temporary improvement of Shoots",
                 "temporary life bullet":"temporary improvement of Life Bullet",

@@ -4,9 +4,16 @@ from Opciones import Opciones
 
 
 class Nave(AtributosBasicos):
-	"""docstring for Nave"""
 	
-	def __init__(self, posicion_x = Opciones.resx/2, posicion_y = Opciones.resy/2, 
+	#Atributos de instancia:
+	#Los de AtributosBasicos
+	#self._numero_disparos 
+	#self._imagenes 
+	#self._vida_util_disparo 
+	#self._lista_disparos 
+	#self._mejoras_activas 
+	#self._juego 
+	def __init__(self,juego, posicion_x = Opciones.resx/2, posicion_y = Opciones.resy/2, 
                  vida = 3, imagenes = [">","^","<","v"], numero_disparos = 3,
                  vida_util_disparo = 10, lista_disparos = [], lista_mejoras = []):
 		super(Nave, self).__init__(posicion_x, posicion_y, vida, 1, 5, 90, "^", 1)
@@ -15,6 +22,7 @@ class Nave(AtributosBasicos):
 		self._vida_util_disparo = vida_util_disparo
 		self._lista_disparos = lista_disparos
 		self._mejoras_activas = lista_mejoras
+		self._juego = juego		
 
 	def getVidaUtilDisparo(self):
 		return self._vida_util_disparo
